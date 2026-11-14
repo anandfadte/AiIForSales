@@ -11,6 +11,7 @@ export interface DataFile {
   display_name: string;
   type: string;
   role: string;
+  use_in?: string;
 }
 
 export interface ActivityConfig {
@@ -50,6 +51,8 @@ export interface PhaseContent {
   prompt2?: string;
   promptSkeleton?: SkeletonSpec;
   prompt2Skeleton?: SkeletonSpec;
+  promptOptional?: string;
+  prompt2Optional?: string;
   gate?: string[];
   skillChain?: string;
   checkpoint?: string;
@@ -125,6 +128,8 @@ async function convertSections(sections: Record<string, string>): Promise<PhaseC
   if (sections.prompt_2_skeleton) {
     try { content.prompt2Skeleton = JSON.parse(sections.prompt_2_skeleton); } catch {}
   }
+  if (sections.prompt_optional) content.promptOptional = sections.prompt_optional.trim();
+  if (sections.prompt_2_optional) content.prompt2Optional = sections.prompt_2_optional.trim();
   if (sections.gate) {
     content.gate = sections.gate.split("\n").map((l) => l.trim()).filter((l) => l.length > 0);
   }

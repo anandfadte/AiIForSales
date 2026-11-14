@@ -27,9 +27,9 @@ Both happen in the **same Claude conversation**. Context compounds between promp
     "goal": "First meeting with VP Operations James Morrison — 30-minute window, 5 days away"
   },
   "inputs": [
-    { "key": "signal_1", "label": "A. What operational challenge is a VP of Operations at a large US health network solving right now?" },
-    { "key": "signal_2", "label": "B. What financial or strategic pressure is Meridian specifically under this quarter?" },
-    { "key": "signal_3", "label": "C. What would make Morrison say \"you understand our business\" — not generic healthcare facts?" }
+    { "key": "signal_1", "label": "A. What is the top operational priority for a VP Ops at a $3B US health network right now?" },
+    { "key": "signal_2", "label": "B. What is Meridian specifically under pressure about this quarter — not a generic industry trend?" },
+    { "key": "signal_3", "label": "C. What would make Morrison say 'you get our business' — one specific, non-generic fact?" }
   ],
   "template": "Research {company}. I'm preparing: {goal}. Find:\n1. {signal_1}\n2. {signal_2}\n3. {signal_3}\nFocus on the last 6 months. 400 words max."
 }
@@ -42,7 +42,7 @@ Both happen in the **same Claude conversation**. Context compounds between promp
     "cross_ref": "Cross-reference with the web research already in this conversation. Where do the filings confirm or contradict the news?"
   },
   "inputs": [
-    { "key": "focus", "label": "A. What number or quote from this report would hit hardest in the first 5 minutes with a VP of Operations?" }
+    { "key": "focus", "label": "A. What one number or CFO quote from this report would land hardest with a VP of Operations?" }
   ],
   "template": "Analyze {file}. Extract: {extract}. Also find CFO and VP quotes about operational challenges and vendor expectations. {focus} {cross_ref} 400 words max."
 }

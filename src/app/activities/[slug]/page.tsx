@@ -5,8 +5,9 @@ import {
   ArrowRight,
   ChevronLeft,
   Clock,
+  FileText,
+  Globe,
   Layers,
-  Zap,
 } from "lucide-react";
 import { getActivities, getActivityBySlug } from "@/lib/activities";
 import { ActivityPhases } from "@/components/ActivityPhases";
@@ -70,47 +71,60 @@ export default async function ActivityPage({
           </span>
         </div>
 
-        {/* Skill chain */}
-        {config.skill_chain && config.skill_chain.length > 0 && (
-          <div className="mb-6 rounded-xl border border-border bg-surface-alt p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <Zap size={14} className="text-accent" />
-              <span className="text-xs font-semibold uppercase tracking-wider text-text-muted">
-                Skills chain for this activity
-              </span>
+        {/* Plugin + Skill sequence strip */}
+        {(config.plugins?.length > 0 || (config.skill_chain && config.skill_chain.length > 0)) && (
+          <div className="rounded-xl border border-border overflow-hidden">
+            <div className="px-4 pt-3 pb-2.5 bg-surface-alt border-b border-border">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-text-muted">Your sequence — run in this order</span>
             </div>
-            <div className="flex flex-wrap items-center gap-2">
-              {config.skill_chain.map((skill, i) => (
-                <span key={i} className="flex items-center gap-2">
-                  <span className="rounded bg-accent/10 px-3 py-1 font-mono text-sm font-semibold text-accent">
-                    {skill}
-                  </span>
-                  {i < config.skill_chain.length - 1 && (
-                    <span className="text-text-muted text-sm">→</span>
-                  )}
-                </span>
-              ))}
+            {config.plugins?.length > 0 && (
+              <div className="px-4 py-3 flex items-center gap-4 border-b border-border/50 bg-surface">
+                <div className="shrink-0 w-24">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-blue-500">Phase 2</span>
+                  <p className="text-[10px] text-text-muted mt-0.5">Enable plugins</p>
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  {config.plugins.map((p, i) => {
+                    const isFile = p.toLowerCase().includes("file");
+                    return (
+                      <span key={i} className={`inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-semibold ${
+                        isFile
+                          ? "bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800 text-purple-700 dark:text-purple-300"
+                          : "bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300"
+                      }`}>
+                        {isFile ? <FileText size={11} className="mr-1" /> : <Globe size={11} className="mr-1" />}
+                        {p}
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+            {config.skill_chain && config.skill_chain.length > 0 && (
+              <div className="px-4 py-3 flex items-center gap-4 bg-surface">
+                <div className="shrink-0 w-24">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-orange-500">Phase 3</span>
+                  <p className="text-[10px] text-text-muted mt-0.5">Run skills</p>
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  {config.skill_chain.map((skill, i) => (
+                    <span key={i} className="flex items-center gap-1.5">
+                      <span className={`rounded-md px-2.5 py-1 font-mono text-xs font-bold ${
+                        skill === "/human"
+                          ? "bg-amber-100 dark:bg-amber-900/30 border border-amber-300 dark:border-amber-700 text-amber-800 dark:text-amber-200"
+                          : "bg-orange-50 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-800 text-orange-700 dark:text-orange-300"
+                      }`}>{skill}</span>
+                      {i < config.skill_chain.length - 1 && <span className="text-text-muted text-xs">→</span>}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+            <div className="px-4 py-2.5 border-t border-border/50 bg-surface-alt/60">
+              <p className="text-[11px] text-text-muted">Run everything in the <strong className="text-text-secondary">same Claude conversation</strong> — context from Phase 2 makes Phase 3 sharper.</p>
             </div>
-            <p className="mt-3 text-xs text-text-muted">
-              Run all skills in the <strong>same Claude conversation</strong>, in order. Context compounds.
-            </p>
           </div>
         )}
-
-        {/* Learning objectives */}
-        <div className="rounded-xl border border-border bg-surface-alt p-5">
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-text-muted mb-3">
-            What you will practise
-          </h3>
-          <ul className="space-y-1.5">
-            {config.learning_objectives.map((obj, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-text-secondary">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                {obj}
-              </li>
-            ))}
-          </ul>
-        </div>
       </section>
 
       {/* Phases */}

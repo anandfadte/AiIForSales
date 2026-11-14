@@ -26,6 +26,8 @@ interface PhaseContent {
   prompt2?: string;
   promptSkeleton?: SkeletonSpec;
   prompt2Skeleton?: SkeletonSpec;
+  promptOptional?: string;
+  prompt2Optional?: string;
   gate?: string[];
   skillChain?: string;
   checkpoint?: string;
@@ -47,6 +49,7 @@ interface DataFile {
   display_name: string;
   type: string;
   role: string;
+  use_in?: string;
 }
 
 interface Props {
@@ -261,7 +264,17 @@ export function ActivityPhases({ slug, phases, dataFiles = [], durationMinutes, 
                             </span>
                             <div className="flex-1 min-w-0">
                               <p className="text-sm font-medium text-text-primary">{f.display_name}</p>
-                              <p className="text-xs text-text-muted truncate">{f.role}</p>
+                              {f.use_in ? (
+                                <p className={`text-[11px] font-semibold mt-0.5 ${
+                                  f.use_in.toLowerCase().includes("upload")
+                                    ? "text-accent"
+                                    : "text-text-muted"
+                                }`}>
+                                  {f.use_in.toLowerCase().includes("upload") ? "↑ " : ""}{f.use_in}
+                                </p>
+                              ) : (
+                                <p className="text-xs text-text-muted truncate">{f.role}</p>
+                              )}
                             </div>
                             {downloadHref && (
                               <a
@@ -289,11 +302,19 @@ export function ActivityPhases({ slug, phases, dataFiles = [], durationMinutes, 
                   <PromptBox text={phase.content.prompt} label={phase.content.prompt2 ? "Prompt 1" : "Copy this prompt"} />
                 ) : null}
 
+                {phase.content.promptOptional && (
+                  <PromptOptional text={phase.content.promptOptional} />
+                )}
+
                 {phase.content.prompt2Skeleton ? (
                   <PromptSkeleton spec={phase.content.prompt2Skeleton} label="Build Prompt 2 — Document Analysis" />
                 ) : phase.content.prompt2 ? (
                   <PromptBox text={phase.content.prompt2} label="Prompt 2" />
                 ) : null}
+
+                {phase.content.prompt2Optional && (
+                  <PromptOptional text={phase.content.prompt2Optional} />
+                )}
 
                 {phase.content.gate && phase.content.gate.length > 0 && (
                   <GateChecklist items={phase.content.gate} />
@@ -378,15 +399,15 @@ export function ActivityPhases({ slug, phases, dataFiles = [], durationMinutes, 
 
 function LayerProgressBar({ phaseStates, phases }: { phaseStates: PhaseStatus[]; phases: PhaseInfo[] }) {
   const layers = [
-    { key: "brief", label: "Brief", icon: Globe, color: "text-blue-500" },
-    { key: "intel", label: "Intel", icon: FileText, color: "text-purple-500" },
-    { key: "skills", label: "Skills", icon: Zap, color: "text-orange-500" },
-    { key: "humanize", label: "Humanize", icon: Sparkles, color: "text-amber-500" },
+    { key: "brief", label: "Brief", sub: "Read the deal", icon: Globe, color: "text-blue-500" },
+    { key: "intel", label: "Intel", sub: "Research with AI", icon: FileText, color: "text-purple-500" },
+    { key: "skills", label: "Skills", sub: "Run the chain", icon: Zap, color: "text-orange-500" },
+    { key: "humanize", label: "Humanize", sub: "Polish the output", icon: Sparkles, color: "text-amber-500" },
   ];
 
   return (
     <div className="rounded-xl border border-border bg-surface-alt px-5 py-3">
-      <p className="text-[10px] font-semibold uppercase tracking-widest text-text-muted mb-2">4-layer intelligence stack</p>
+      <p className="text-[10px] font-semibold uppercase tracking-widest text-text-muted mb-2.5">Your sequence</p>
       <div className="flex items-center gap-2">
         {layers.map((layer, i) => {
           const phaseIdx = phases.findIndex((p) => p.key === layer.key);
@@ -395,11 +416,14 @@ function LayerProgressBar({ phaseStates, phases }: { phaseStates: PhaseStatus[];
           const Icon = layer.icon;
           return (
             <div key={layer.key} className="flex items-center gap-2 flex-1 min-w-0">
-              <div className={`flex items-center gap-1.5 ${done || active ? "opacity-100" : "opacity-30"}`}>
-                <Icon size={14} className={done ? "text-green-500" : layer.color} />
-                <span className={`text-xs font-medium hidden sm:inline truncate ${done ? "text-green-600 dark:text-green-400" : active ? "text-text-primary" : "text-text-muted"}`}>
-                  {layer.label}
-                </span>
+              <div className={`${done || active ? "opacity-100" : "opacity-30"}`}>
+                <div className="flex items-center gap-1.5">
+                  <Icon size={13} className={done ? "text-green-500" : layer.color} />
+                  <span className={`text-xs font-semibold hidden sm:inline truncate ${done ? "text-green-600 dark:text-green-400" : active ? "text-text-primary" : "text-text-muted"}`}>
+                    {layer.label}
+                  </span>
+                </div>
+                <p className="text-[10px] text-text-muted hidden sm:block mt-0.5 leading-tight pl-5">{layer.sub}</p>
               </div>
               {i < layers.length - 1 && <ChevronRight size={12} className="text-border shrink-0" />}
             </div>
@@ -584,6 +608,17 @@ function PromptSkeleton({ spec, label }: { spec: SkeletonSpec; label: string }) 
         </div>
         <pre className="text-sm text-slate-300 font-[family-name:var(--font-mono)] leading-relaxed whitespace-pre-wrap">{assembled}</pre>
       </div>
+    </div>
+  );
+}
+
+function PromptOptional({ text }: { text: string }) {
+  return (
+    <div className="rounded-lg border border-amber-300 dark:border-amber-700/50 bg-amber-50 dark:bg-amber-950/20 px-4 py-3">
+      <div className="text-[10px] font-bold uppercase tracking-widest text-amber-700 dark:text-amber-400 mb-2">
+        ✦ Optional upgrade — skip if pressed for time
+      </div>
+      <div className="text-sm text-amber-900 dark:text-amber-200 leading-relaxed whitespace-pre-wrap">{text}</div>
     </div>
   );
 }

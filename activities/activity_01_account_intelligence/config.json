@@ -22,19 +22,22 @@
       "filename": "target_accounts.xlsx",
       "display_name": "Target Accounts",
       "type": "xlsx",
-      "role": "10 target accounts with account context"
+      "role": "10 target accounts with account context",
+      "use_in": "Intel · background reference"
     },
     {
       "filename": "account_context_notes.docx",
       "display_name": "Account Context Notes",
       "type": "docx",
-      "role": "CRM notes per account"
+      "role": "CRM notes per account",
+      "use_in": "Intel · Prompt 1 reference"
     },
     {
       "filename": "annual_report_excerpt.docx",
       "display_name": "Annual Report Excerpt",
       "type": "docx",
-      "role": "Prospect's annual report (upload in Phase 2 — Intel)"
+      "role": "Prospect's annual report",
+      "use_in": "Upload in Intel · Prompt 2"
     }
   ],
   "learning_objectives": [
