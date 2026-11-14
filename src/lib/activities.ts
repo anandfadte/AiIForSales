@@ -30,6 +30,17 @@ export interface ActivityConfig {
   deliverable: string;
 }
 
+export interface SkeletonField {
+  key: string;
+  label: string;
+}
+
+export interface SkeletonSpec {
+  fixed: Record<string, string>;
+  inputs: SkeletonField[];
+  template: string;
+}
+
 export interface PhaseContent {
   scenario?: string;
   context?: string;
@@ -37,6 +48,9 @@ export interface PhaseContent {
   doThis?: string;
   prompt?: string;
   prompt2?: string;
+  promptSkeleton?: SkeletonSpec;
+  prompt2Skeleton?: SkeletonSpec;
+  gate?: string[];
   skillChain?: string;
   checkpoint?: string;
   tip?: string;
@@ -105,6 +119,15 @@ async function convertSections(sections: Record<string, string>): Promise<PhaseC
   if (sections.do_this) content.doThis = await mdToHtml(sections.do_this);
   if (sections.prompt) content.prompt = sections.prompt.trim();
   if (sections.prompt_2) content.prompt2 = sections.prompt_2.trim();
+  if (sections.prompt_skeleton) {
+    try { content.promptSkeleton = JSON.parse(sections.prompt_skeleton); } catch {}
+  }
+  if (sections.prompt_2_skeleton) {
+    try { content.prompt2Skeleton = JSON.parse(sections.prompt_2_skeleton); } catch {}
+  }
+  if (sections.gate) {
+    content.gate = sections.gate.split("\n").map((l) => l.trim()).filter((l) => l.length > 0);
+  }
   if (sections.skill_chain) content.skillChain = sections.skill_chain.trim();
   if (sections.checkpoint) content.checkpoint = await mdToHtml(sections.checkpoint);
   if (sections.tip) content.tip = await mdToHtml(sections.tip);

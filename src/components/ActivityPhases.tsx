@@ -6,6 +6,17 @@ import {
   Globe, FileText, Zap, Sparkles,
 } from "lucide-react";
 
+interface SkeletonField {
+  key: string;
+  label: string;
+}
+
+interface SkeletonSpec {
+  fixed: Record<string, string>;
+  inputs: SkeletonField[];
+  template: string;
+}
+
 interface PhaseContent {
   scenario?: string;
   context?: string;
@@ -13,6 +24,9 @@ interface PhaseContent {
   doThis?: string;
   prompt?: string;
   prompt2?: string;
+  promptSkeleton?: SkeletonSpec;
+  prompt2Skeleton?: SkeletonSpec;
+  gate?: string[];
   skillChain?: string;
   checkpoint?: string;
   tip?: string;
@@ -230,11 +244,30 @@ export function ActivityPhases({ slug, phases, dataFiles = [], durationMinutes, 
                   <SkillChainDisplay raw={phase.content.skillChain} />
                 )}
 
-                {phase.content.prompt && (
+                {phase.content.promptSkeleton ? (
+                  <PromptSkeleton spec={phase.content.promptSkeleton} label={phase.content.prompt2Skeleton ? "Build Prompt 1 — Web Search" : "Build your prompt"} />
+                ) : phase.content.prompt ? (
                   <PromptBox text={phase.content.prompt} label={phase.content.prompt2 ? "Prompt 1" : "Copy this prompt"} />
-                )}
-                {phase.content.prompt2 && (
+                ) : null}
+
+                {phase.content.prompt2Skeleton ? (
+                  <PromptSkeleton spec={phase.content.prompt2Skeleton} label="Build Prompt 2 — Document Analysis" />
+                ) : phase.content.prompt2 ? (
                   <PromptBox text={phase.content.prompt2} label="Prompt 2" />
+                ) : null}
+
+                {phase.content.gate && phase.content.gate.length > 0 && (
+                  <div className="rounded-lg border-2 border-green-300 bg-green-50 dark:border-green-500/30 dark:bg-green-950/30 p-4">
+                    <div className="text-xs font-bold uppercase tracking-wider text-green-700 dark:text-green-400 mb-3">Ready to move on?</div>
+                    <ul className="space-y-2">
+                      {phase.content.gate.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-green-900 dark:text-green-100">
+                          <Check size={15} className="text-green-600 dark:text-green-400 shrink-0 mt-0.5" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 )}
 
                 {phase.content.tip && (
@@ -454,6 +487,82 @@ function PromptBox({ text, label }: { text: string; label: string }) {
         </button>
       </div>
       <pre className="bg-[#111827] px-4 py-4 text-sm text-gray-200 font-mono leading-relaxed whitespace-pre-wrap overflow-x-auto">{text}</pre>
+    </div>
+  );
+}
+
+function PromptSkeleton({ spec, label }: { spec: SkeletonSpec; label: string }) {
+  const [inputs, setInputs] = useState<Record<string, string>>({});
+  const [copied, setCopied] = useState(false);
+
+  const assembled = spec.template.replace(/\{(\w+)\}/g, (_, key) => {
+    if (inputs[key]?.trim()) return inputs[key].trim();
+    if (spec.fixed[key]) return spec.fixed[key];
+    return `[${key.replace(/_/g, " ")}]`;
+  });
+
+  const allFilled = spec.inputs.every((f) => inputs[f.key]?.trim());
+
+  function copy() {
+    navigator.clipboard.writeText(assembled).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }).catch(() => {});
+  }
+
+  return (
+    <div className="rounded-lg border border-border overflow-hidden">
+      <div className="flex items-center justify-between bg-[#1a1d2e] px-4 py-2.5">
+        <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">{label}</span>
+      </div>
+
+      {Object.keys(spec.fixed).length > 0 && (
+        <div className="bg-surface-alt px-4 py-3 border-b border-border space-y-1.5">
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-text-muted mb-2">Already in your prompt</p>
+          {Object.entries(spec.fixed).map(([key, value]) => (
+            <div key={key} className="flex gap-2 text-xs">
+              <span className="text-text-muted capitalize shrink-0 w-20">{key.replace(/_/g, " ")}:</span>
+              <span className="text-text-secondary">{value}</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div className="bg-surface px-4 py-4 space-y-4 border-b border-border">
+        {spec.inputs.map((field, i) => (
+          <div key={field.key}>
+            <label className="block text-xs font-semibold text-accent mb-1.5">
+              {String.fromCharCode(65 + i)}. {field.label}
+            </label>
+            <input
+              type="text"
+              value={inputs[field.key] || ""}
+              onChange={(e) => setInputs((v) => ({ ...v, [field.key]: e.target.value }))}
+              placeholder="Type your answer…"
+              className="w-full rounded-lg border border-accent/30 bg-surface-alt px-3 py-2 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent/60 transition-colors"
+            />
+          </div>
+        ))}
+      </div>
+
+      <div className="bg-[#111827] px-4 py-4">
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-500">Your assembled prompt</span>
+          <button
+            onClick={copy}
+            disabled={!allFilled}
+            className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1 text-xs font-semibold transition-colors ${
+              allFilled
+                ? "bg-white/10 hover:bg-white/20 text-gray-200"
+                : "bg-white/5 text-gray-600 cursor-not-allowed"
+            }`}
+          >
+            {copied ? <CheckCheck size={13} className="text-green-400" /> : <Copy size={13} />}
+            {copied ? "Copied!" : allFilled ? "Copy" : "Fill all fields first"}
+          </button>
+        </div>
+        <pre className="text-sm text-gray-200 font-mono leading-relaxed whitespace-pre-wrap">{assembled}</pre>
+      </div>
     </div>
   );
 }

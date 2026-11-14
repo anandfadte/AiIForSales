@@ -1,46 +1,57 @@
 # Intel
-> Enable both plugins, then gather live web intelligence and extract numbers from their annual report. (~8 min)
+> Enable both plugins, build your prompts, gather live intelligence. (~8 min)
 
 ## plugin
 Web Search, File Analysis
 
 ## context
 
-This is where generic account knowledge becomes specific deal intelligence. Web search gives you live signals from the last 90 days. The annual report extract gives you the CFO's own words and their actual financial metrics — numbers that beat any industry benchmark in a meeting.
+This is where your Brief-phase hypothesis becomes live deal intelligence. Web search gives you signals from the last 6 months. The annual report gives you the CFO's own numbers — exact figures that beat any industry benchmark in a meeting.
 
-Both happen in the **same Claude conversation**. Context compounds.
+Both happen in the **same Claude conversation**. Context compounds between prompts.
 
 ## do_this
 
-1. Open Claude. Click the puzzle-piece icon and enable both **Web Search** and **File Analysis** plugins.
-2. Paste Prompt 1 — Claude will search for live Meridian signals and James Morrison's profile.
-3. Upload **annual_report_excerpt.docx** (from the files panel on this page), then paste Prompt 2 to extract the numbers that matter.
+**Step 1 — Open Claude.** Click the puzzle-piece icon and enable both **Web Search** and **File Analysis** plugins.
 
-Do NOT start a new chat between steps.
+**Step 2 — Build Prompt 1** using the skeleton below. Fill in fields A, B, C — then copy the assembled prompt and send it. Claude will search for live Meridian signals and James Morrison's profile.
 
-## prompt
-Search the web for two things:
+**Step 3 — Upload the file.** Add **annual_report_excerpt.docx** (from the files panel on this page) to the same conversation — do NOT start a new chat.
 
-**Part 1 — Meridian Health Systems intelligence:**
-Meridian Health Systems, $3.2B regional hospital network in Minneapolis MN with 12 hospitals. I have a first meeting with their VP of Operations in 5 days. Find: (1) news from the last 90 days — acquisitions, partnerships, executive hires, strategic announcements; (2) current industry pressures on regional hospital systems — margin compression, labor costs, AR challenges; (3) their competitive positioning and any vendor changes. Focus on intelligence a VP of Operations would react to, not marketing copy. 400 words max.
+**Step 4 — Build Prompt 2** using the second skeleton below. Fill in field A — then copy and send it to extract numbers from the report.
 
-**Part 2 — James Morrison executive profile:**
-James Morrison, VP of Operations at Meridian Health Systems, formerly at Mayo Clinic. He said "Impress me in the first 5 minutes." Find: (1) his professional background and previous roles; (2) any public statements — conference talks, interviews, articles about operations or healthcare efficiency; (3) 3 specific things I can reference in the first 5 minutes that show I researched HIM, not just his company. 300 words max.
+## prompt_skeleton
+{
+  "fixed": {
+    "company": "Meridian Health Systems · $3.2B · Minneapolis · regional hospital network",
+    "goal": "First meeting with VP Operations James Morrison — 30-minute window, 5 days away"
+  },
+  "inputs": [
+    { "key": "signal_1", "label": "A. What operational challenge is a VP of Operations at a large US health network solving right now?" },
+    { "key": "signal_2", "label": "B. What financial or strategic pressure is Meridian specifically under this quarter?" },
+    { "key": "signal_3", "label": "C. What would make Morrison say \"you understand our business\" — not generic healthcare facts?" }
+  ],
+  "template": "Research {company}. I'm preparing: {goal}. Find:\n1. {signal_1}\n2. {signal_2}\n3. {signal_3}\nFocus on the last 6 months. 400 words max."
+}
 
-## prompt_2
-I'm uploading Meridian Health Systems' FY2024 Annual Report excerpt. Analyze it and extract:
-1. TOP PRIORITIES — what did management say matters most for FY2025?
-2. EXACT NUMBERS — AR days, denial rate, cost per claim, operating margin (get the precise figures, not approximations)
-3. CFO AND VP QUOTES — their exact words about operational challenges and vendor expectations
-4. ACQUISITION INTEGRATION — financial drag from integrating 2 new hospitals
-5. VENDOR SIGNALS — any mentions of evaluating external partners or seeking domain expertise
+## prompt_2_skeleton
+{
+  "fixed": {
+    "file": "annual_report_excerpt.docx (uploaded above)",
+    "extract": "AR days, denial rate, cost per claim, operating margin — exact figures from the filing",
+    "cross_ref": "Cross-reference with the web research already in this conversation. Where do the filings confirm or contradict the news?"
+  },
+  "inputs": [
+    { "key": "focus", "label": "A. What number or quote from this report would hit hardest in the first 5 minutes with a VP of Operations?" }
+  ],
+  "template": "Analyze {file}. Extract: {extract}. Also find CFO and VP quotes about operational challenges and vendor expectations. {focus} {cross_ref} 400 words max."
+}
 
-Cross-reference with the web research already in this conversation. Where do the filings confirm or contradict the news? 400 words max.
+## gate
+Have a live fact about Meridian Health specifically — not generic US health system statistics — from the last 6 months.
+Know one thing about James Morrison: career history, public statement, or what a VP of Ops at a $3.2B network is under pressure to deliver.
+Can say why Morrison would take this meeting seriously — using his title and Meridian's situation, not Genpact's capabilities.
 
 ## tip
 
-Tag web findings with [WEB] and document findings with [DOC] — it makes the skills chain sharper because you can see which intelligence came from where. Specific numbers from THEIR annual report beat any industry benchmark: "52-day AR vs 42-day benchmark" lands harder than "above average AR days."
-
-## checkpoint
-
-Before moving to Skills: do you have (1) one live fact about Meridian from the last 90 days, (2) one specific thing about James Morrison you can reference in the first 5 minutes, and (3) at least 3 exact numbers from the annual report? If you're missing any of these, go back — the skills chain produces sharper output with richer context.
+Tag web findings with [WEB] and document findings with [DOC] — it makes the skills chain sharper because you can see which intelligence came from where. A specific number from THEIR annual report beats any industry benchmark: "52-day AR vs 42-day benchmark" lands harder than "above average AR days."

@@ -1,5 +1,5 @@
 # Scenario Brief
-> Frame the intelligence challenge before you open a search tab. (~3 min)
+> Read the scenario. Name the pressure. Download your files. (~3 min)
 
 ## scenario
 
@@ -9,20 +9,18 @@ The VP, James Morrison, agreed to a 30-minute meeting and said: *"I take a lot o
 
 ## context
 
-Your deliverable: a pre-meeting intelligence pack with company overview, executive profile, financial analysis, 5 talking points for the first 5 minutes, potential pain points mapped to Genpact capabilities, and a recommended meeting agenda — all polished by /human for executive tone.
+Your deliverable: a pre-meeting intelligence pack — company overview, executive profile, financial signals, 5 talking points for the first 5 minutes, potential pain points mapped to Genpact capabilities, and a recommended meeting agenda polished for executive tone.
 
 **Time: 25 minutes.**
 
 ## do_this
 
-Before you search anything, agree as a pod on what intelligence actually changes meeting behaviour:
+**Step 1 — Read the scenario above** until you can say what Morrison's job pressure is in one sentence.
 
-1. Write one sentence: what is the VP of Operations trying to solve right now? Not what Meridian Health does — what this specific executive's problem is.
-2. Write three questions Morrison might ask if the account team arrived unprepared.
-3. For each question, identify what intelligence would remove that risk. These become your search targets in Phase 2.
+**Step 2 — Name the pressure.** As a pod, complete this sentence out loud: *"Morrison is under pressure to ______ because ______."* You'll use this in your Intel prompt.
 
-**Also:** download your activity files from the panel on this page — you'll upload one of them in Phase 2 (Intel).
+**Step 3 — Download your activity files** from the panel on this page. You'll upload one of them in Phase 2 (Intel).
 
 ## checkpoint
 
-Can your team name the VP's most likely top priority right now — not from generic CRM notes, but from what any informed person could observe about large US health networks this quarter? If not, your hypotheses are still too generic.
+Can your pod complete the sentence — "Morrison is under pressure to ___ because ___" — without searching anything yet? If not, re-read the scenario. The answer is in it.
