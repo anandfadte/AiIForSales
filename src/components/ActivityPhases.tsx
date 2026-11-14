@@ -241,6 +241,44 @@ export function ActivityPhases({ slug, phases, dataFiles = [], durationMinutes, 
                   </div>
                 )}
 
+                {/* Inline downloads in Brief phase — right after the steps, before anything else */}
+                {phase.key === "brief" && dataFiles.length > 0 && (
+                  <div className="rounded-xl border-2 border-dashed border-accent/30 bg-accent/5 p-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <FileText size={15} className="text-accent shrink-0" />
+                      <span className="text-xs font-bold uppercase tracking-widest text-accent">Download your activity files</span>
+                    </div>
+                    <ul className="space-y-2.5">
+                      {dataFiles.map((f) => {
+                        const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+                        const downloadHref = folderName
+                          ? `${basePath}/activity-files/${folderName}/${f.filename}`
+                          : null;
+                        return (
+                          <li key={f.filename} className="flex items-center gap-3">
+                            <span className="inline-block h-7 w-9 shrink-0 rounded bg-accent/10 text-center text-[10px] font-bold leading-7 text-accent uppercase tracking-wide">
+                              {f.type.slice(0, 4)}
+                            </span>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-medium text-text-primary">{f.display_name}</p>
+                              <p className="text-xs text-text-muted truncate">{f.role}</p>
+                            </div>
+                            {downloadHref && (
+                              <a
+                                href={downloadHref}
+                                download={f.filename}
+                                className="shrink-0 inline-flex items-center gap-1.5 rounded-lg border border-accent/40 bg-surface px-3 py-1.5 text-xs font-semibold text-accent hover:bg-accent/10 transition-colors"
+                              >
+                                ↓ Download
+                              </a>
+                            )}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
+
                 {phase.content.skillChain && (
                   <SkillChainDisplay raw={phase.content.skillChain} />
                 )}
@@ -334,43 +372,6 @@ export function ActivityPhases({ slug, phases, dataFiles = [], durationMinutes, 
         </div>
       )}
 
-      {dataFiles.length > 0 && (
-        <div className="rounded-xl border border-border bg-surface-alt p-5">
-          <div className="flex items-center gap-2 text-sm font-semibold text-text-primary mb-1">
-            <FileText size={16} className="text-accent" />
-            Folder data — download these files
-          </div>
-          <p className="text-xs text-text-muted mb-4">Download before Phase 2. Upload the highlighted file in Phase 2 (Intel) using the File Analysis plugin.</p>
-          <ul className="space-y-3">
-            {dataFiles.map((f) => {
-              const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
-              const downloadHref = folderName
-                ? `${basePath}/activity-files/${folderName}/${f.filename}`
-                : null;
-              return (
-                <li key={f.filename} className="flex items-center gap-3">
-                  <span className="inline-block h-8 w-10 shrink-0 rounded bg-accent/10 text-center text-[10px] font-bold leading-8 text-accent uppercase tracking-wide">
-                    {f.type.slice(0, 4)}
-                  </span>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-text-primary">{f.display_name}</p>
-                    <p className="text-xs text-text-muted truncate">{f.role}</p>
-                  </div>
-                  {downloadHref && (
-                    <a
-                      href={downloadHref}
-                      download={f.filename}
-                      className="shrink-0 inline-flex items-center gap-1.5 rounded-lg border border-accent/40 bg-accent/5 px-3 py-1.5 text-xs font-semibold text-accent hover:bg-accent/10 transition-colors"
-                    >
-                      ↓ Download
-                    </a>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
     </div>
   );
 }
