@@ -22,13 +22,15 @@
       "filename": "genpact_insurance_context.docx",
       "display_name": "Genpact Insurance Context",
       "type": "docx",
-      "role": "Genpact capabilities and case studies for insurance"
+      "role": "Genpact capabilities and case studies for insurance",
+      "use_in": "Intel · background reference"
     },
     {
       "filename": "sample_rfi.docx",
       "display_name": "TrueNorth RFI",
       "type": "docx",
-      "role": "15-question RFI (upload in Phase 2 — Intel)"
+      "role": "15-question RFI",
+      "use_in": "Upload in Intel · Prompt 2"
     }
   ],
   "learning_objectives": [

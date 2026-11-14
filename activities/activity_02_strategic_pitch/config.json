@@ -22,19 +22,22 @@
       "filename": "prospect_profile.docx",
       "display_name": "Prospect Profile",
       "type": "docx",
-      "role": "Internal relationship data for Cascade Retail"
+      "role": "Internal relationship data for Cascade Retail",
+      "use_in": "Intel · background reference"
     },
     {
       "filename": "deal_context.docx",
       "display_name": "Deal Context",
       "type": "docx",
-      "role": "Current deal status and history"
+      "role": "Current deal status and history",
+      "use_in": "Intel · Prompt 1 reference"
     },
     {
       "filename": "investor_presentation_excerpt.docx",
       "display_name": "Investor Presentation",
       "type": "docx",
-      "role": "CFO's own slides (upload in Phase 2 — Intel)"
+      "role": "CFO's own slides",
+      "use_in": "Upload in Intel · Prompt 2"
     }
   ],
   "learning_objectives": [

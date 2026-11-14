@@ -27,9 +27,9 @@ Both happen in the **same Claude conversation**. Context compounds.
     "goal": "RFI response · claims processing transformation · competing vs Accenture, Cognizant, EXL"
   },
   "inputs": [
-    { "key": "signal_1", "label": "A. What is TrueNorth specifically known for in P&C claims — different from a generic insurer?" },
-    { "key": "signal_2", "label": "B. What claim are Accenture, Cognizant, AND EXL all making? (find the common denominator)" },
-    { "key": "signal_3", "label": "C. What language in TrueNorth's RFI tells you what they're REALLY buying — beyond the stated requirements?" }
+    { "key": "signal_1", "label": "A. What makes TrueNorth different from a generic P&C insurer?" },
+    { "key": "signal_2", "label": "B. What claim are Accenture, Cognizant, AND EXL all making right now?" },
+    { "key": "signal_3", "label": "C. What in TrueNorth's RFI language reveals what they're really buying?" }
   ],
   "template": "Research {company}. I'm preparing: {goal}. Find:\n1. {signal_1}\n2. {signal_2}\n3. {signal_3}\n400 words max."
 }
@@ -41,7 +41,7 @@ Both happen in the **same Claude conversation**. Context compounds.
     "extract": "which of the 15 questions are differentiating vs table stakes, which 3-4 most likely determine the shortlist, and which questions if answered poorly could eliminate Genpact"
   },
   "inputs": [
-    { "key": "focus", "label": "A. Which single question in this RFI, if answered poorly, eliminates Genpact? Start there." }
+    { "key": "focus", "label": "A. Which RFI question, answered poorly, would eliminate Genpact?" }
   ],
   "template": "Analyze the RFI in {file}. Extract: {extract}. {focus} Output a prioritized list. 400 words max."
 }

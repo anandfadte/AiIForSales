@@ -27,9 +27,9 @@ Both happen in the **same Claude conversation**. Context compounds.
     "goal": "CFO meeting in 48 hours · Sarah Chen (ex-Goldman Sachs) · $6M O2C transformation"
   },
   "inputs": [
-    { "key": "signal_1", "label": "A. What changed at QuantumEdge in the LAST 30 DAYS — Q3 earnings numbers, leadership rumours, competitor moves?" },
-    { "key": "signal_2", "label": "B. What does Chen's Goldman Sachs background tell you about how she evaluates a $6M proposal?" },
-    { "key": "signal_3", "label": "C. If Chen asks 'why can't this wait until next fiscal year?' — what is the one-sentence answer using Q3 numbers?" }
+    { "key": "signal_1", "label": "A. What changed at QuantumEdge in the last 30 days — Q3 results, leadership, competitors?" },
+    { "key": "signal_2", "label": "B. How does Chen's Goldman background shape her approach to a $6M proposal?" },
+    { "key": "signal_3", "label": "C. What is the one-sentence 'why now' answer using Q3 numbers — not benchmarks?" }
   ],
   "template": "Research {company}. I'm preparing: {goal}. Find:\n1. {signal_1}\n2. {signal_2}\n3. {signal_3}\nFocus on the last 30 days only. 400 words max."
 }

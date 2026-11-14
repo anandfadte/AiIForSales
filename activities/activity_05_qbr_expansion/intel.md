@@ -27,9 +27,9 @@ Both happen in the **same Claude conversation**. Context compounds.
     "goal": "QBR expansion pitch · CEO Maria Santos · IT ops + customer service transformation + supply chain optimization"
   },
   "inputs": [
-    { "key": "signal_1", "label": "A. What operational challenge is a $7B utility CEO solving RIGHT NOW — in 2024/2025 specifically?" },
-    { "key": "signal_2", "label": "B. What peer utility has already moved on one of these 3 areas — making Horizon's inaction visible?" },
-    { "key": "signal_3", "label": "C. What would Santos say is 'different from every vendor who calls us' — using her own stated priorities?" }
+    { "key": "signal_1", "label": "A. What is a $7B utility CEO pressured to solve right now — in 2024/2025?" },
+    { "key": "signal_2", "label": "B. Which peer utility has already moved on one of these 3 areas?" },
+    { "key": "signal_3", "label": "C. What would Santos call 'different from every vendor who calls us'?" }
   ],
   "template": "Research {company}. I'm preparing: {goal}. Find:\n1. {signal_1}\n2. {signal_2}\n3. {signal_3}\nFocus on the last 6 months. 400 words max."
 }
@@ -41,7 +41,7 @@ Both happen in the **same Claude conversation**. Context compounds.
     "extract": "CEO Santos' exact words for each expansion area: IT ops, customer service, supply chain — the specific quotes that open each conversation, not summaries"
   },
   "inputs": [
-    { "key": "focus", "label": "A. Which Santos quote is the strongest opening for the FIRST expansion area your pod will pitch?" }
+    { "key": "focus", "label": "A. Which Santos quote opens the first expansion area your pod will pitch?" }
   ],
   "template": "Analyze {file}. Extract: {extract}. {focus} Cross-reference with web research already in this conversation. 400 words max."
 }

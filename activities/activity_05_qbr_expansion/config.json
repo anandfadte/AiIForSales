@@ -24,19 +24,22 @@
       "filename": "existing_account_brief.docx",
       "display_name": "Existing Account Brief",
       "type": "docx",
-      "role": "3 years of Horizon Energy engagement history"
+      "role": "3 years of Horizon Energy engagement history",
+      "use_in": "Intel · background reference"
     },
     {
       "filename": "qbr_performance_data.xlsx",
       "display_name": "QBR Performance Data",
       "type": "xlsx",
-      "role": "Current engagement metrics and results"
+      "role": "Current engagement metrics and results",
+      "use_in": "Intel · Prompt 1 reference"
     },
     {
       "filename": "earnings_transcript_excerpt.docx",
       "display_name": "Earnings Transcript",
       "type": "docx",
-      "role": "CEO Santos' Q3 statements (upload in Phase 2 — Intel)"
+      "role": "CEO Santos' Q3 statements",
+      "use_in": "Upload in Intel · Prompt 2"
     }
   ],
   "learning_objectives": [

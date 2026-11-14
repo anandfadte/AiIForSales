@@ -23,19 +23,22 @@
       "filename": "deal_history.docx",
       "display_name": "Deal History",
       "type": "docx",
-      "role": "18 months of relationship and deal progression"
+      "role": "18 months of relationship and deal progression",
+      "use_in": "Intel · background reference"
     },
     {
       "filename": "contact_map.xlsx",
       "display_name": "Contact Map",
       "type": "xlsx",
-      "role": "Decision-maker map including sponsor risk"
+      "role": "Decision-maker map including sponsor risk",
+      "use_in": "Intel · background reference"
     },
     {
       "filename": "earnings_transcript.docx",
       "display_name": "Q3 Earnings Transcript",
       "type": "docx",
-      "role": "QuantumEdge Q3 call (upload in Phase 2 — Intel)"
+      "role": "QuantumEdge Q3 call",
+      "use_in": "Upload in Intel · Prompt 2"
     }
   ],
   "learning_objectives": [

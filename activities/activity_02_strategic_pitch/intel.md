@@ -27,9 +27,9 @@ Both happen in the **same Claude conversation**. Context compounds between promp
     "goal": "CFO business case meeting · Rebecca Torres (ex-Nordstrom VP Finance) · ROI + payback period + why now"
   },
   "inputs": [
-    { "key": "signal_1", "label": "A. What financial pressure is a $4B retail CFO under RIGHT NOW — earnings, margins, working capital?" },
-    { "key": "signal_2", "label": "B. What makes Cascade's situation urgent TODAY — not 6 months from now?" },
-    { "key": "signal_3", "label": "C. What would Torres say is 'different from every other pitch I've heard'?" }
+    { "key": "signal_1", "label": "A. What financial pressure is a $4B retail CFO under right now?" },
+    { "key": "signal_2", "label": "B. What makes Cascade's situation urgent today — not 6 months from now?" },
+    { "key": "signal_3", "label": "C. What would Torres call 'different from every pitch I've heard'?" }
   ],
   "template": "Research {company}. I'm preparing: {goal}. Find:\n1. {signal_1}\n2. {signal_2}\n3. {signal_3}\nFocus on the last 6 months. 400 words max."
 }
@@ -42,7 +42,7 @@ Both happen in the **same Claude conversation**. Context compounds between promp
     "cross_ref": "Cross-reference with the web research already in this conversation. Where do the investor slides confirm or strengthen the case?"
   },
   "inputs": [
-    { "key": "focus", "label": "A. What number or exact Torres quote would hit hardest as an OPENING LINE in this meeting?" }
+    { "key": "focus", "label": "A. What Torres quote or number from these slides is your strongest opening line?" }
   ],
   "template": "Analyze {file}. Extract: {extract}. {focus} {cross_ref} 400 words max."
 }
