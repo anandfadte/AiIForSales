@@ -10,41 +10,48 @@ This is where your Brief-phase hypothesis becomes live deal intelligence. Web se
 
 Both happen in the **same Claude conversation**. Context compounds between prompts.
 
+**The prompt structure below — Role, Context, Task, Control, Output — is the standard professional format for directing any AI tool.** Each section tells Claude something different: who to be, what it already knows, what to find, how to behave, and what to give back. You will use this pattern outside this workshop.
+
 ## do_this
 
 **Step 1 — Open Claude.** Click the puzzle-piece icon and enable both **Web Search** and **File Analysis** plugins.
 
-**Step 2 — Build Prompt 1** using the skeleton below. Fill in fields A, B, C — then copy the assembled prompt and send it. Claude will search for live Meridian signals and James Morrison's profile.
+**Step 2 — Build Prompt 1** using the skeleton below. The prompt is 80% pre-written. Add one piece of insider context in field A if you have it — or skip it. Copy the assembled prompt and send it.
 
 **Step 3 — Upload the file.** Add **annual_report_excerpt.docx** (from the files panel on this page) to the same conversation — do NOT start a new chat.
 
-**Step 4 — Build Prompt 2** using the second skeleton below. Fill in field A — then copy and send it to extract numbers from the report.
+**Step 4 — Build Prompt 2** using the second skeleton below. Add what specific number or quote you're looking for in field A — or skip it. Copy and send.
 
 ## prompt_skeleton
 {
   "fixed": {
-    "company": "Meridian Health Systems · $3.2B · Minneapolis · regional hospital network",
-    "goal": "First meeting with VP Operations James Morrison — 30-minute window, 5 days away"
+    "role": "Senior account researcher supporting a B2B sales team",
+    "context": "Senior AE at Genpact — first meeting with VP Operations James Morrison, Meridian Health Systems ($3.2B, Minneapolis). Meeting window: 30 minutes, 5 days away.",
+    "task": "Web search, last 6 months. Find: (1) top operational pressure a VP Ops at a $3B US health network is solving right now, (2) what Meridian specifically is under pressure about this quarter, (3) what would make Morrison say 'you understand our business' — specific, not generic healthcare facts.",
+    "control": "Last 6 months only. Specific facts, numbers, quotes over general industry context.",
+    "output": "400 words max. Tag web findings with [WEB].",
+    "insider": "None — use web research only."
   },
   "inputs": [
-    { "key": "signal_1", "label": "A. What is the top operational priority for a VP Ops at a $3B US health network right now?" },
-    { "key": "signal_2", "label": "B. What is Meridian specifically under pressure about this quarter — not a generic industry trend?" },
-    { "key": "signal_3", "label": "C. What would make Morrison say 'you get our business' — one specific, non-generic fact?" }
+    { "key": "insider", "label": "Your inside edge — anything you know that Claude won't find online (from your CRM, manager, or the scenario brief). Skip if none." }
   ],
-  "template": "Research {company}. I'm preparing: {goal}. Find:\n1. {signal_1}\n2. {signal_2}\n3. {signal_3}\nFocus on the last 6 months. 400 words max."
+  "template": "Role: {role}\n\nContext: {context}\nInsider context: {insider}\n\nTask: {task}\n\nControl: {control}\n\nOutput: {output}"
 }
 
 ## prompt_2_skeleton
 {
   "fixed": {
-    "file": "annual_report_excerpt.docx (uploaded above)",
-    "extract": "AR days, denial rate, cost per claim, operating margin — exact figures from the filing",
-    "cross_ref": "Cross-reference with the web research already in this conversation. Where do the filings confirm or contradict the news?"
+    "role": "Financial analyst expert in healthcare revenue cycle operations",
+    "context": "Uploaded: annual_report_excerpt.docx — Meridian Health Systems FY2024. Web research is already in this conversation.",
+    "task": "Extract exact figures: AR days, denial rate, cost per claim, operating margin. Also extract CFO and VP quotes about operational challenges and vendor expectations.",
+    "control": "Cross-reference with the web research already in this conversation. Where does the filing confirm or contradict what we found online?",
+    "output": "400 words max. Tag document findings with [DOC].",
+    "focus": "Any metric that shows operational underperformance vs. peers."
   },
   "inputs": [
-    { "key": "focus", "label": "A. What one number or CFO quote from this report would land hardest with a VP of Operations?" }
+    { "key": "focus", "label": "What specific number or quote are you most looking for? (Based on what you found in Prompt 1 — skip to use the default.)" }
   ],
-  "template": "Analyze {file}. Extract: {extract}. Also find CFO and VP quotes about operational challenges and vendor expectations. {focus} {cross_ref} 400 words max."
+  "template": "Role: {role}\n\nContext: {context}\n\nTask: {task}\nFocus especially on: {focus}\n\nControl: {control}\n\nOutput: {output}"
 }
 
 ## gate
