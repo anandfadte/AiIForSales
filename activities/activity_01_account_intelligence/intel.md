@@ -6,21 +6,17 @@ Web Search, File Analysis
 
 ## context
 
-This is where your Brief-phase hypothesis becomes live deal intelligence. Web search gives you signals from the last 6 months. The annual report gives you the CFO's own numbers — exact figures that beat any industry benchmark in a meeting.
+Web search + document analysis in the same conversation — context from Prompt 1 feeds into Prompt 2.
 
-Both happen in the **same Claude conversation**. Context compounds between prompts.
-
-**The prompt structure below — Role, Context, Task, Control, Output — is the standard professional format for directing any AI tool.** Each section tells Claude something different: who to be, what it already knows, what to find, how to behave, and what to give back. You will use this pattern outside this workshop.
+The prompts are 80% pre-written. The template format you see (**Role → Context → Task → Control → Output**) is the professional standard for directing any AI tool — you will use it beyond this workshop.
 
 ## do_this
 
-**Step 1 — Open Claude.** Click the puzzle-piece icon and enable both **Web Search** and **File Analysis** plugins.
+**Step 1 —** Enable both **Web Search** and **File Analysis** plugins (puzzle-piece icon in Claude).
 
-**Step 2 — Build Prompt 1** using the skeleton below. The prompt is 80% pre-written. Add one piece of insider context in field A if you have it — or skip it. Copy the assembled prompt and send it.
+**Step 2 —** Build Prompt 1 below. Add one line of insider context — or skip it. Copy and send.
 
-**Step 3 — Upload the file.** Add **annual_report_excerpt.docx** (from the files panel on this page) to the same conversation — do NOT start a new chat.
-
-**Step 4 — Build Prompt 2** using the second skeleton below. Add what specific number or quote you're looking for in field A — or skip it. Copy and send.
+**Step 3 —** Upload **annual_report_excerpt.docx** to the same conversation (do NOT start a new chat). Build Prompt 2 below — add one line or skip. Copy and send.
 
 ## prompt_skeleton
 {
@@ -53,11 +49,6 @@ Both happen in the **same Claude conversation**. Context compounds between promp
   ],
   "template": "Role: {role}\n\nContext: {context}\n\nTask: {task}\nFocus especially on: {focus}\n\nControl: {control}\n\nOutput: {output}"
 }
-
-## gate
-Have a live fact about Meridian Health specifically — not generic US health system statistics — from the last 6 months.
-Know one thing about James Morrison: career history, public statement, or what a VP of Ops at a $3.2B network is under pressure to deliver.
-Can say why Morrison would take this meeting seriously — using his title and Meridian's situation, not Genpact's capabilities.
 
 ## tip
 

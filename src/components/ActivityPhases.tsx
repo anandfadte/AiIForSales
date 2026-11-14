@@ -514,17 +514,22 @@ const FIELD_COLORS = [
 ];
 
 function PromptSkeleton({ spec, label }: { spec: SkeletonSpec; label: string }) {
-  const [inputs, setInputs] = useState<Record<string, string>>({});
+  const [userInput, setUserInput] = useState("");
   const [copied, setCopied] = useState(false);
 
-  const assembled = spec.template.replace(/\{(\w+)\}/g, (_, key) => {
-    if (inputs[key]?.trim()) return inputs[key].trim();
-    if (spec.fixed[key]) return spec.fixed[key];
-    return `[${key.replace(/_/g, " ")}]`;
-  });
+  const inputField = spec.inputs[0];
 
-  const allFilled = spec.inputs.every((f) => inputs[f.key]?.trim());
-  const filledCount = spec.inputs.filter((f) => inputs[f.key]?.trim()).length;
+  // Fill all fixed values; use a unique marker byte for the one editable slot
+  const MARKER = "\x01";
+  const templateFilled = spec.template.replace(/\{(\w+)\}/g, (_, k) => {
+    if (k === inputField.key) return MARKER;
+    return spec.fixed[k] ?? `[${k.replace(/_/g, " ")}]`;
+  });
+  const markerIdx = templateFilled.indexOf(MARKER);
+  const before = templateFilled.slice(0, markerIdx);
+  const after = templateFilled.slice(markerIdx + 1);
+
+  const assembled = before + (userInput.trim() || spec.fixed[inputField.key] || "") + after;
 
   function copy() {
     navigator.clipboard.writeText(assembled).then(() => {
@@ -536,77 +541,35 @@ function PromptSkeleton({ spec, label }: { spec: SkeletonSpec; label: string }) 
   return (
     <div className="rounded-xl border border-border overflow-hidden" style={{ boxShadow: "var(--shadow-sm)" }}>
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3" style={{ background: "var(--prompt-bg)" }}>
+      <div className="px-4 py-3" style={{ background: "var(--prompt-bg)" }}>
         <span className="text-[11px] font-bold uppercase tracking-widest text-slate-400">{label}</span>
-        {spec.inputs.length > 0 && (
-          <span className="text-[11px] font-medium text-slate-500">
-            {filledCount}/{spec.inputs.length} filled
-          </span>
-        )}
       </div>
 
-      {/* Fixed context fields */}
-      {Object.keys(spec.fixed).length > 0 && (
-        <div className="bg-surface-alt px-4 py-3 border-b border-border">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-text-muted mb-2.5">Pre-filled context</p>
-          <div className="space-y-2">
-            {Object.entries(spec.fixed).map(([key, value]) => (
-              <div key={key} className="flex gap-3 text-xs leading-relaxed">
-                <span className="text-text-muted capitalize shrink-0 font-medium w-16">{key.replace(/_/g, " ")}:</span>
-                <span className="text-text-secondary">{value}</span>
-              </div>
-            ))}
-          </div>
+      {/* Prompt with one inline editable blank */}
+      <div style={{ background: "var(--prompt-bg)" }} className="px-4 pt-4 pb-3">
+        <div className="font-[family-name:var(--font-mono)] text-sm leading-relaxed whitespace-pre-wrap">
+          <span className="text-slate-300">{before}</span>
+          <input
+            type="text"
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+            placeholder="add context — or skip"
+            className="whitespace-normal font-[family-name:var(--font-mono)] text-sm text-accent border-b border-dashed border-accent/70 bg-transparent focus:outline-none focus:border-accent inline-block min-w-[220px] placeholder:text-slate-500 placeholder:italic"
+          />
+          <span className="text-slate-300">{after}</span>
         </div>
-      )}
-
-      {/* Input fields */}
-      <div className="bg-surface px-4 py-5 space-y-5 border-b border-border">
-        {spec.inputs.map((field, i) => {
-          const color = FIELD_COLORS[i % FIELD_COLORS.length];
-          const letter = String.fromCharCode(65 + i);
-          const filled = !!inputs[field.key]?.trim();
-          return (
-            <div key={field.key}>
-              <label className="flex items-start gap-2.5 mb-2 cursor-pointer">
-                <span className={`inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-white mt-0.5 ${color.bg}`}>
-                  {letter}
-                </span>
-                <span className={`text-xs font-semibold leading-snug ${color.text}`}>{field.label}</span>
-              </label>
-              <input
-                type="text"
-                value={inputs[field.key] || ""}
-                onChange={(e) => setInputs((v) => ({ ...v, [field.key]: e.target.value }))}
-                placeholder={`Your answer for ${letter}…`}
-                className={`w-full rounded-lg border px-3 py-2 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 transition-all ${
-                  filled
-                    ? `${color.light} ${color.border} ${color.ring}`
-                    : `bg-surface-alt border-border ${color.ring}`
-                }`}
-              />
-            </div>
-          );
-        })}
       </div>
 
-      {/* Assembled preview */}
-      <div style={{ background: "var(--prompt-bg)" }} className="px-4 py-4">
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Your assembled prompt</span>
-          <button
-            onClick={copy}
-            className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
-              allFilled
-                ? "bg-accent text-white hover:bg-accent/90 shadow-sm"
-                : "bg-white/5 text-slate-600 cursor-not-allowed"
-            }`}
-          >
-            {copied ? <CheckCheck size={13} className="text-green-300" /> : <Copy size={13} />}
-            {copied ? "Copied!" : allFilled ? "Copy prompt" : "Fill all fields to copy"}
-          </button>
-        </div>
-        <pre className="text-sm text-slate-300 font-[family-name:var(--font-mono)] leading-relaxed whitespace-pre-wrap">{assembled}</pre>
+      {/* Hint + copy */}
+      <div className="px-4 py-3 border-t border-border/50 flex items-center justify-between gap-4" style={{ background: "var(--prompt-bg)" }}>
+        <p className="text-[11px] text-slate-500 leading-snug flex-1 italic">{inputField.label}</p>
+        <button
+          onClick={copy}
+          className="shrink-0 inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold bg-accent text-white hover:bg-accent/90 shadow-sm transition-all"
+        >
+          {copied ? <CheckCheck size={13} className="text-green-300" /> : <Copy size={13} />}
+          {copied ? "Copied!" : "Copy Prompt"}
+        </button>
       </div>
     </div>
   );
