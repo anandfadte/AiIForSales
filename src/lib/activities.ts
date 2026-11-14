@@ -53,6 +53,7 @@ export interface PhaseContent {
   prompt2Skeleton?: SkeletonSpec;
   promptOptional?: string;
   prompt2Optional?: string;
+  transition?: string;
   gate?: string[];
   skillChain?: string;
   checkpoint?: string;
@@ -130,6 +131,7 @@ async function convertSections(sections: Record<string, string>): Promise<PhaseC
   }
   if (sections.prompt_optional) content.promptOptional = sections.prompt_optional.trim();
   if (sections.prompt_2_optional) content.prompt2Optional = sections.prompt_2_optional.trim();
+  if (sections.transition) content.transition = await mdToHtml(sections.transition);
   if (sections.gate) {
     content.gate = sections.gate.split("\n").map((l) => l.trim()).filter((l) => l.length > 0);
   }

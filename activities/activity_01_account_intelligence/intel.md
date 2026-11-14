@@ -16,7 +16,7 @@ The prompts are 80% pre-written. The template format you see (**Role → Context
 
 **Step 2 —** Build Prompt 1 below. Add one line of insider context — or skip it. Copy and send.
 
-**Step 3 —** Upload **annual_report_excerpt.docx** to the same conversation (do NOT start a new chat). Build Prompt 2 below — add one line or skip. Copy and send.
+**Step 3 —** Build Prompt 2 below. Add one line or skip. Copy and send.
 
 ## prompt_skeleton
 {
@@ -33,6 +33,9 @@ The prompts are 80% pre-written. The template format you see (**Role → Context
   ],
   "template": "Role: {role}\n\nContext: {context}\nInsider context: {insider}\n\nTask: {task}\n\nControl: {control}\n\nOutput: {output}"
 }
+
+## transition
+Upload **annual_report_excerpt.docx** to this same conversation — do NOT start a new chat. Prompt 2 uses Claude's web research **and** the document together. The cross-reference between the two is where the sharpest intelligence comes from.
 
 ## prompt_2_skeleton
 {

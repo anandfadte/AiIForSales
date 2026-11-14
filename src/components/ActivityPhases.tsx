@@ -28,6 +28,7 @@ interface PhaseContent {
   prompt2Skeleton?: SkeletonSpec;
   promptOptional?: string;
   prompt2Optional?: string;
+  transition?: string;
   gate?: string[];
   skillChain?: string;
   checkpoint?: string;
@@ -302,8 +303,8 @@ export function ActivityPhases({ slug, phases, dataFiles = [], durationMinutes, 
                   <PromptBox text={phase.content.prompt} label={phase.content.prompt2 ? "Prompt 1" : "Copy this prompt"} />
                 ) : null}
 
-                {phase.content.promptOptional && (
-                  <PromptOptional text={phase.content.promptOptional} />
+                {phase.content.transition && (phase.content.prompt2Skeleton || phase.content.prompt2) && (
+                  <PromptTransition html={phase.content.transition} />
                 )}
 
                 {phase.content.prompt2Skeleton ? (
@@ -311,10 +312,6 @@ export function ActivityPhases({ slug, phases, dataFiles = [], durationMinutes, 
                 ) : phase.content.prompt2 ? (
                   <PromptBox text={phase.content.prompt2} label="Prompt 2" />
                 ) : null}
-
-                {phase.content.prompt2Optional && (
-                  <PromptOptional text={phase.content.prompt2Optional} />
-                )}
 
                 {phase.content.gate && phase.content.gate.length > 0 && (
                   <GateChecklist items={phase.content.gate} />
@@ -582,6 +579,21 @@ function PromptOptional({ text }: { text: string }) {
         ✦ Optional upgrade — skip if pressed for time
       </div>
       <div className="text-sm text-amber-900 dark:text-amber-200 leading-relaxed whitespace-pre-wrap">{text}</div>
+    </div>
+  );
+}
+
+function PromptTransition({ html }: { html: string }) {
+  return (
+    <div className="flex flex-col items-center gap-0">
+      <div className="w-px h-3 bg-border" />
+      <div className="w-full rounded-lg border-2 border-dashed border-indigo-400/50 dark:border-indigo-500/40 bg-indigo-50/40 dark:bg-indigo-950/20 px-4 py-3">
+        <p className="text-[10px] font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2">
+          ↓ After Prompt 1 responds
+        </p>
+        <div className="text-sm text-indigo-900 dark:text-indigo-200 leading-relaxed prose dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: html }} />
+      </div>
+      <div className="w-px h-3 bg-border" />
     </div>
   );
 }
