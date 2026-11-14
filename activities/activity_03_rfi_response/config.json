@@ -7,7 +7,7 @@
   "duration_minutes": 25,
   "ai_tool": "Claude (with Web Search + File Analysis plugins)",
   "difficulty": "Intermediate",
-  "phases": 6,
+  "phases": 4,
   "plugins": [
     "Web Search",
     "File Analysis"
@@ -28,7 +28,7 @@
       "filename": "sample_rfi.docx",
       "display_name": "TrueNorth RFI",
       "type": "docx",
-      "role": "15-question RFI (upload in Phase 3)"
+      "role": "15-question RFI (upload in Phase 2 — Intel)"
     }
   ],
   "learning_objectives": [

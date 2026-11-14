@@ -7,7 +7,7 @@
   "duration_minutes": 25,
   "ai_tool": "Claude (with Web Search + File Analysis plugins)",
   "difficulty": "Foundation",
-  "phases": 6,
+  "phases": 4,
   "plugins": [
     "Web Search",
     "File Analysis"
@@ -34,7 +34,7 @@
       "filename": "annual_report_excerpt.docx",
       "display_name": "Annual Report Excerpt",
       "type": "docx",
-      "role": "Prospect's annual report (upload in Phase 3)"
+      "role": "Prospect's annual report (upload in Phase 2 — Intel)"
     }
   ],
   "learning_objectives": [

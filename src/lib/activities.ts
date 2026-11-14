@@ -60,11 +60,9 @@ export interface Activity {
 
 const PHASE_FILES = [
   { key: "brief", file: "brief.md", number: 1, defaultTitle: "Scenario Brief" },
-  { key: "web_research", file: "web_research.md", number: 2, defaultTitle: "Web Research" },
-  { key: "file_analysis", file: "file_analysis.md", number: 3, defaultTitle: "File Analysis" },
-  { key: "folder_data", file: "folder_data.md", number: 4, defaultTitle: "Folder Data" },
-  { key: "skills", file: "skills.md", number: 5, defaultTitle: "Skills Chain" },
-  { key: "humanize", file: "humanize.md", number: 6, defaultTitle: "Humanize" },
+  { key: "intel", file: "intel.md", number: 2, defaultTitle: "Intel" },
+  { key: "skills", file: "skills.md", number: 3, defaultTitle: "Skills Chain" },
+  { key: "humanize", file: "humanize.md", number: 4, defaultTitle: "Humanize" },
 ];
 
 async function mdToHtml(md: string): Promise<string> {

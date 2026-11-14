@@ -7,7 +7,7 @@
   "duration_minutes": 25,
   "ai_tool": "Claude (with Web Search + File Analysis plugins)",
   "difficulty": "Advanced",
-  "phases": 6,
+  "phases": 4,
   "plugins": [
     "Web Search",
     "File Analysis"
@@ -35,7 +35,7 @@
       "filename": "earnings_transcript.docx",
       "display_name": "Q3 Earnings Transcript",
       "type": "docx",
-      "role": "QuantumEdge Q3 call (upload in Phase 3)"
+      "role": "QuantumEdge Q3 call (upload in Phase 2 — Intel)"
     }
   ],
   "learning_objectives": [

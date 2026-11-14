@@ -2,12 +2,10 @@ import { getActivities } from "@/lib/activities";
 import { ActivityGrid } from "@/components/ActivityGrid";
 
 const PHASES = [
-  { name: "Brief", time: "~3 min", label: "Frame the deal" },
-  { name: "Web Research", time: "~4 min", label: "Search live signals" },
-  { name: "File Analysis", time: "~4 min", label: "Mine their documents" },
-  { name: "Folder Data", time: "~3 min", label: "Layer internal data" },
-  { name: "Skills", time: "~7 min", label: "Run the skill chain" },
-  { name: "Humanize", time: "~4 min", label: "/human always last" },
+  { name: "Brief", time: "~5 min", label: "Frame the deal" },
+  { name: "Intel", time: "~8 min", label: "Web search + document upload" },
+  { name: "Skills", time: "~7 min", label: "Run the skills chain" },
+  { name: "Humanize", time: "~5 min", label: "/human always last" },
 ];
 
 export default async function ActivitiesPage() {
@@ -39,7 +37,7 @@ export default async function ActivitiesPage() {
         </h1>
         <p className="mt-3 max-w-[680px] text-text-secondary">
           Each activity drops your team into a live deal scenario.
-          Work through six phases using Claude plugins, folder data, and skills to produce a client-ready output in 25 minutes.
+          Work through four phases — using Claude plugins and skills in one session — to produce a client-ready output in 25 minutes.
         </p>
       </div>
 
@@ -81,16 +79,13 @@ export default async function ActivitiesPage() {
         {/* Plugin & skill legend */}
         <div className="mt-6 flex flex-wrap gap-3 border-t border-border pt-4">
           <span className="inline-flex items-center gap-1.5 rounded-md bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-700 dark:text-sky-400">
-            Phase 2 — Web Search plugin
-          </span>
-          <span className="inline-flex items-center gap-1.5 rounded-md bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-700 dark:text-purple-400">
-            Phase 3 — File Analysis plugin
+            Phase 2 — Web Search + File Analysis plugins
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-md bg-orange-500/10 px-3 py-1 text-xs font-medium text-orange-700 dark:text-orange-400">
-            Phase 5 — Claude skills chain
+            Phase 3 — Claude skills chain
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-md bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-700 dark:text-amber-400">
-            Phase 6 — /human always last
+            Phase 4 — /human always last
           </span>
         </div>
 

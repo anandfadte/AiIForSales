@@ -316,7 +316,7 @@ export function ActivityPhases({ slug, phases, dataFiles = [], durationMinutes, 
             <FileText size={16} className="text-accent" />
             Folder data — download these files
           </div>
-          <p className="text-xs text-text-muted mb-4">Use these in Claude during Phases 3 & 4. Upload the Phase 3 file using the File Analysis plugin.</p>
+          <p className="text-xs text-text-muted mb-4">Download before Phase 2. Upload the highlighted file in Phase 2 (Intel) using the File Analysis plugin.</p>
           <ul className="space-y-3">
             {dataFiles.map((f) => {
               const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
@@ -386,15 +386,22 @@ function LayerProgressBar({ phaseStates, phases }: { phaseStates: PhaseStatus[];
 }
 
 function PluginBadge({ name }: { name: string }) {
-  const isFile = name.toLowerCase().includes("file");
+  const plugins = name.split(",").map((p) => p.trim()).filter(Boolean);
   return (
-    <span className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide ${
-      isFile
-        ? "bg-purple-50 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-800 text-purple-700 dark:text-purple-300"
-        : "bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300"
-    }`}>
-      {isFile ? <FileText size={11} /> : <Globe size={11} />}
-      {name} Plugin
+    <span className="inline-flex items-center gap-1.5 flex-wrap">
+      {plugins.map((plugin) => {
+        const isFile = plugin.toLowerCase().includes("file");
+        return (
+          <span key={plugin} className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide ${
+            isFile
+              ? "bg-purple-50 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-800 text-purple-700 dark:text-purple-300"
+              : "bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300"
+          }`}>
+            {isFile ? <FileText size={11} /> : <Globe size={11} />}
+            {plugin}
+          </span>
+        );
+      })}
     </span>
   );
 }

@@ -7,7 +7,7 @@
   "duration_minutes": 25,
   "ai_tool": "Claude (with Web Search + File Analysis plugins)",
   "difficulty": "Intermediate",
-  "phases": 6,
+  "phases": 4,
   "plugins": [
     "Web Search",
     "File Analysis"
@@ -34,7 +34,7 @@
       "filename": "investor_presentation_excerpt.docx",
       "display_name": "Investor Presentation",
       "type": "docx",
-      "role": "CFO's own slides (upload in Phase 3)"
+      "role": "CFO's own slides (upload in Phase 2 — Intel)"
     }
   ],
   "learning_objectives": [

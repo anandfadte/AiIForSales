@@ -21,6 +21,16 @@ Before you search anything, agree as a pod on what intelligence actually changes
 2. Write three questions Morrison might ask if the account team arrived unprepared.
 3. For each question, identify what intelligence would remove that risk. These become your search targets in Phase 2.
 
+## do_this
+
+Before you search anything, agree as a pod on what intelligence actually changes meeting behaviour:
+
+1. Write one sentence: what is the VP of Operations trying to solve right now? Not what Meridian Health does — what this specific executive's problem is.
+2. Write three questions Morrison might ask if the account team arrived unprepared.
+3. For each question, identify what intelligence would remove that risk. These become your search targets in Phase 2.
+
+**Also:** download your activity files from the panel on this page — you'll upload one of them in Phase 2 (Intel).
+
 ## checkpoint
 
 Can your team name the VP's most likely top priority right now — not from generic CRM notes, but from what any informed person could observe about large US health networks this quarter? If not, your hypotheses are still too generic.

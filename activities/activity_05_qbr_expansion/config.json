@@ -7,7 +7,7 @@
   "duration_minutes": 25,
   "ai_tool": "Claude (with Web Search + File Analysis plugins)",
   "difficulty": "Advanced",
-  "phases": 6,
+  "phases": 4,
   "plugins": [
     "Web Search",
     "File Analysis"
@@ -36,7 +36,7 @@
       "filename": "earnings_transcript_excerpt.docx",
       "display_name": "Earnings Transcript",
       "type": "docx",
-      "role": "CEO Santos' Q3 statements (upload in Phase 3)"
+      "role": "CEO Santos' Q3 statements (upload in Phase 2 — Intel)"
     }
   ],
   "learning_objectives": [
