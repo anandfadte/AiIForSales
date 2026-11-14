@@ -24,6 +24,8 @@ Before searching or uploading anything:
 2. What's the one claim Accenture, Cognizant, and EXL will ALL make? How does Genpact differ?
 3. TrueNorth said "generic responses will be scored lower." What does a generic response look like? What does a specific one look like?
 
+**Also:** download your activity files from the panel on this page — you'll upload one of them in Phase 2 (Intel).
+
 ## checkpoint
 
 Can your team name two things that are specific about TrueNorth — not generic P&C insurer facts, but things about THIS company that should appear in your RFI responses? If not, the web research in Phase 2 is critical before you answer a single question.

@@ -23,6 +23,8 @@ Sarah Chen is ex-Goldman Sachs. She'll dismiss anything that doesn't use her own
 2. Sarah Chen said "ROI, payback period, why now." Write the three-sentence opening that starts with HER Q3 numbers, not Genpact's capabilities.
 3. How do you handle the sponsor risk (SVP Mark Torres may be leaving)? Write one sentence that acknowledges the risk without making it the conversation.
 
+**Also:** download your activity files from the panel on this page — you'll upload one of them in Phase 2 (Intel).
+
 ## checkpoint
 
 Can your team articulate why the Q3 earnings release changes how you should walk into this meeting? If you're planning to pitch the same way you would have 2 weeks ago, you haven't used the intelligence stack.

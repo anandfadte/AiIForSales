@@ -21,6 +21,8 @@ Torres is former Nordstrom VP Finance — she reads financial statements for bre
 2. What's the "why now" — why can't Torres wait until next fiscal year?
 3. List the three numbers from the scenario that you MUST include in the business case. What would it mean for Cascade if each improved by 20%?
 
+**Also:** download your activity files from the panel on this page — you'll upload one of them in Phase 2 (Intel).
+
 ## checkpoint
 
 Can your team articulate why Rebecca Torres specifically would care — using her background (Nordstrom VP Finance), her mandate (150bps margin improvement in 18 months), and her stated requirement (ROI in year one)? Generic business cases fail her test.

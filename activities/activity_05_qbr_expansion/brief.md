@@ -21,6 +21,8 @@ This is the longest skill chain in the program — 4 skills + /human. The key is
 2. What would make Santos say "tell me more" vs. "this is just an upsell"? The difference is in whether you reference HER priorities first.
 3. For each of the 3 expansion areas, identify: what did Santos say about this in public? Start there.
 
+**Also:** download your activity files from the panel on this page — you'll upload one of them in Phase 2 (Intel).
+
 ## checkpoint
 
 Can your team name the CEO's stated priorities for each expansion area — from her own words, not from your service catalog? If you're starting the expansion pitch with Genpact's capabilities before Santos's priorities, you're using the wrong order.
