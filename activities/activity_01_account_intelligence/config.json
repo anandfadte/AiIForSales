@@ -1,0 +1,47 @@
+{
+  "id": "activity_01",
+  "slug": "account-intelligence",
+  "title": "Account Intelligence Sprint",
+  "subtitle": "VP of Ops meeting in 5 days. Know their world before they test yours.",
+  "domain": "Account Management",
+  "duration_minutes": 25,
+  "ai_tool": "Claude (with Web Search + File Analysis plugins)",
+  "difficulty": "Foundation",
+  "phases": 6,
+  "plugins": [
+    "Web Search",
+    "File Analysis"
+  ],
+  "skill_chain": [
+    "/account-research",
+    "/earnings-agent",
+    "/human"
+  ],
+  "data_files": [
+    {
+      "filename": "target_accounts.xlsx",
+      "display_name": "Target Accounts",
+      "type": "xlsx",
+      "role": "10 target accounts with account context"
+    },
+    {
+      "filename": "account_context_notes.docx",
+      "display_name": "Account Context Notes",
+      "type": "docx",
+      "role": "CRM notes per account"
+    },
+    {
+      "filename": "annual_report_excerpt.docx",
+      "display_name": "Annual Report Excerpt",
+      "type": "docx",
+      "role": "Prospect's annual report (upload in Phase 3)"
+    }
+  ],
+  "learning_objectives": [
+    "Use Web Search to find live signals that aren't in your CRM",
+    "Interrogate a prospect document for what it hides, not just what it says",
+    "Chain /account-research and /earnings-agent in a single conversation",
+    "Distil intelligence into a brief the account exec can use in 2 minutes"
+  ],
+  "deliverable": "Pre-meeting intelligence brief"
+}

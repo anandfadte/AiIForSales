@@ -1,0 +1,47 @@
+{
+  "id": "activity_02",
+  "slug": "strategic-pitch",
+  "title": "Strategic Pitch Build",
+  "subtitle": "CFO pitch in 3 days. ROI from their own numbers, not benchmarks.",
+  "domain": "Sales Strategy",
+  "duration_minutes": 25,
+  "ai_tool": "Claude (with Web Search + File Analysis plugins)",
+  "difficulty": "Intermediate",
+  "phases": 6,
+  "plugins": [
+    "Web Search",
+    "File Analysis"
+  ],
+  "skill_chain": [
+    "/cxo-strategic-brief",
+    "/cfo-deck-builder",
+    "/human"
+  ],
+  "data_files": [
+    {
+      "filename": "prospect_profile.docx",
+      "display_name": "Prospect Profile",
+      "type": "docx",
+      "role": "Internal relationship data for Cascade Retail"
+    },
+    {
+      "filename": "deal_context.docx",
+      "display_name": "Deal Context",
+      "type": "docx",
+      "role": "Current deal status and history"
+    },
+    {
+      "filename": "investor_presentation_excerpt.docx",
+      "display_name": "Investor Presentation",
+      "type": "docx",
+      "role": "CFO's own slides (upload in Phase 3)"
+    }
+  ],
+  "learning_objectives": [
+    "Extract financial signals from a prospect's public reporting",
+    "Build a CFO-grade business case from the prospect's own numbers",
+    "Use /cxo-strategic-brief to frame the strategic narrative",
+    "Use /cfo-deck-builder to structure the financial argument"
+  ],
+  "deliverable": "CFO-ready business case with ROI"
+}

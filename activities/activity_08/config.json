@@ -1,0 +1,48 @@
+{
+  "id": "activity_08",
+  "slug": "deal-intelligence-dossier",
+  "title": "Live Deal Intelligence Dossier",
+  "subtitle": "CFO meeting in 48 hours. She wants numbers, not slides.",
+  "domain": "Deal Acceleration",
+  "duration_minutes": 25,
+  "ai_tool": "Claude (with Web Search + File Analysis plugins)",
+  "difficulty": "Advanced",
+  "phases": 6,
+  "plugins": [
+    "Web Search",
+    "File Analysis"
+  ],
+  "skill_chain": [
+    "/account-research",
+    "/earnings-agent",
+    "/cfo-deck-builder",
+    "/human"
+  ],
+  "data_files": [
+    {
+      "filename": "deal_history.docx",
+      "display_name": "Deal History",
+      "type": "docx",
+      "role": "18 months of relationship and deal progression"
+    },
+    {
+      "filename": "contact_map.xlsx",
+      "display_name": "Contact Map",
+      "type": "xlsx",
+      "role": "Decision-maker map including sponsor risk"
+    },
+    {
+      "filename": "earnings_transcript.docx",
+      "display_name": "Q3 Earnings Transcript",
+      "type": "docx",
+      "role": "QuantumEdge Q3 call (upload in Phase 3)"
+    }
+  ],
+  "learning_objectives": [
+    "Integrate breaking news into an active deal in real time",
+    "Build a CFO-grade business case using the prospect's latest quarterly numbers",
+    "Address sponsor risk and competitive threats with specific counter-positioning",
+    "Produce a dossier that changes how you walk into the meeting"
+  ],
+  "deliverable": "Deal intelligence dossier with live data, financial case, and meeting talking points"
+}

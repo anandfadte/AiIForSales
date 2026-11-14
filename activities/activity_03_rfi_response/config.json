@@ -1,0 +1,41 @@
+{
+  "id": "activity_03",
+  "slug": "rfi-response",
+  "title": "RFI Response Under Pressure",
+  "subtitle": "48 hours. 15 questions. 3 competitors on the same shortlist.",
+  "domain": "Proposal & Bid",
+  "duration_minutes": 25,
+  "ai_tool": "Claude (with Web Search + File Analysis plugins)",
+  "difficulty": "Intermediate",
+  "phases": 6,
+  "plugins": [
+    "Web Search",
+    "File Analysis"
+  ],
+  "skill_chain": [
+    "/rfi-response",
+    "/solution-assistant",
+    "/human"
+  ],
+  "data_files": [
+    {
+      "filename": "genpact_insurance_context.docx",
+      "display_name": "Genpact Insurance Context",
+      "type": "docx",
+      "role": "Genpact capabilities and case studies for insurance"
+    },
+    {
+      "filename": "sample_rfi.docx",
+      "display_name": "TrueNorth RFI",
+      "type": "docx",
+      "role": "15-question RFI (upload in Phase 3)"
+    }
+  ],
+  "learning_objectives": [
+    "Extract the evaluator's real priorities from the RFI document",
+    "Identify which questions carry the most scoring weight",
+    "Use /rfi-response to structure differentiated answers",
+    "Use /solution-assistant to tailor Genpact capabilities to the brief"
+  ],
+  "deliverable": "Complete RFI first draft \u2014 15 answers, differentiated"
+}

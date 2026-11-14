@@ -1,0 +1,49 @@
+{
+  "id": "activity_05",
+  "slug": "qbr-expansion",
+  "title": "QBR Expansion Play",
+  "subtitle": "CEO attending for the first time. Existing account. Expand into 3 new areas.",
+  "domain": "Account Expansion",
+  "duration_minutes": 25,
+  "ai_tool": "Claude (with Web Search + File Analysis plugins)",
+  "difficulty": "Advanced",
+  "phases": 6,
+  "plugins": [
+    "Web Search",
+    "File Analysis"
+  ],
+  "skill_chain": [
+    "/earnings-agent",
+    "/account-research",
+    "/cxo-strategic-brief",
+    "/solution-assistant",
+    "/human"
+  ],
+  "data_files": [
+    {
+      "filename": "existing_account_brief.docx",
+      "display_name": "Existing Account Brief",
+      "type": "docx",
+      "role": "3 years of Horizon Energy engagement history"
+    },
+    {
+      "filename": "qbr_performance_data.xlsx",
+      "display_name": "QBR Performance Data",
+      "type": "xlsx",
+      "role": "Current engagement metrics and results"
+    },
+    {
+      "filename": "earnings_transcript_excerpt.docx",
+      "display_name": "Earnings Transcript",
+      "type": "docx",
+      "role": "CEO Santos' Q3 statements (upload in Phase 3)"
+    }
+  ],
+  "learning_objectives": [
+    "Layer financial signals onto existing account knowledge",
+    "Identify expansion opportunities tied to the CEO's stated priorities",
+    "Build a QBR narrative that opens three new conversations",
+    "Chain four skills in one conversation without losing context"
+  ],
+  "deliverable": "QBR expansion pitch for 3 service areas"
+}
