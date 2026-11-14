@@ -1,5 +1,5 @@
 # Scenario Brief
-> You have 48 hours. Understand what just changed. (~3 min)
+> Read the scenario. Name what changed. Download your files. (~3 min)
 
 ## scenario
 
@@ -19,12 +19,12 @@ Sarah Chen is ex-Goldman Sachs. She'll dismiss anything that doesn't use her own
 
 ## do_this
 
-1. The meeting is in 48 hours. What are the THREE things that most changed since your last touchpoint — and how does each change your pitch?
-2. Sarah Chen said "ROI, payback period, why now." Write the three-sentence opening that starts with HER Q3 numbers, not Genpact's capabilities.
-3. How do you handle the sponsor risk (SVP Mark Torres may be leaving)? Write one sentence that acknowledges the risk without making it the conversation.
+**Step 1 — Read the scenario above.** There are three things that changed since your last touchpoint with QuantumEdge. Each one changes your pitch. Find them.
 
-**Also:** download your activity files from the panel on this page — you'll upload one of them in Phase 2 (Intel).
+**Step 2 — Name the most important change.** As a pod, complete: *"The most important change since our last meeting is ____ — and it changes our pitch because ____."* You'll use this in your Intel prompt.
+
+**Step 3 — Download your activity files** from the panel on this page. You'll upload one of them in Phase 2 (Intel).
 
 ## checkpoint
 
-Can your team articulate why the Q3 earnings release changes how you should walk into this meeting? If you're planning to pitch the same way you would have 2 weeks ago, you haven't used the intelligence stack.
+Can your pod name the three changes and their pitch implications — without searching yet? The scenario spells them out. If you're still planning to open with what you said last quarter, you haven't used the intelligence stack.

@@ -188,20 +188,21 @@ export function ActivityPhases({ slug, phases, dataFiles = [], durationMinutes, 
           <div
             key={phase.key}
             ref={(el) => { phaseRefs.current[idx] = el; }}
-            className={`rounded-xl border transition-all ${
-              status === "locked" ? "border-border/50 bg-surface/50 opacity-60"
-              : isHumanize && status === "active" ? "border-amber-400/60 bg-surface shadow-sm"
-              : status === "active" ? "border-accent/40 bg-surface shadow-sm"
-              : "border-green-500/30 bg-surface"
+            style={status !== "locked" ? { boxShadow: "var(--shadow-md)" } : {}}
+            className={`rounded-xl border transition-all duration-200 ${
+              status === "locked" ? "border-border/50 bg-surface/50 opacity-50"
+              : isHumanize && status === "active" ? "border-amber-400/50 bg-surface"
+              : status === "active" ? "border-accent/50 bg-surface"
+              : "border-green-500/25 bg-surface"
             }`}
           >
             {/* Phase header */}
             <div className={`flex items-center gap-4 p-5 ${status !== "locked" ? "pb-3" : ""}`}>
-              <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white ${
-                status === "complete" ? "bg-green-500"
-                : isHumanize && status === "active" ? "bg-amber-500"
-                : status === "active" ? "bg-accent"
-                : "bg-text-muted/30"
+              <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white ring-4 ${
+                status === "complete" ? "bg-green-500 ring-green-500/15"
+                : isHumanize && status === "active" ? "bg-amber-500 ring-amber-500/15"
+                : status === "active" ? "bg-accent ring-accent/15"
+                : "bg-text-muted/20 ring-transparent"
               }`}>
                 {status === "complete" ? <Check size={18} /> : isHumanize ? <Sparkles size={16} /> : phase.number}
               </div>
@@ -224,8 +225,8 @@ export function ActivityPhases({ slug, phases, dataFiles = [], durationMinutes, 
               <div className="px-5 pb-5 space-y-5">
 
                 {phase.content.scenario && (
-                  <div className="rounded-lg bg-slate-100 dark:bg-[#1a1a2e] border-l-4 border-l-accent p-5">
-                    <div className="prose text-slate-700 dark:text-gray-200 text-[15px] leading-relaxed" dangerouslySetInnerHTML={{ __html: phase.content.scenario }} />
+                  <div className="rounded-xl bg-surface-alt border border-border border-l-4 border-l-accent p-5" style={{ boxShadow: "var(--shadow-sm)" }}>
+                    <div className="prose text-text-secondary text-[15px] leading-relaxed" dangerouslySetInnerHTML={{ __html: phase.content.scenario }} />
                   </div>
                 )}
 
@@ -235,7 +236,7 @@ export function ActivityPhases({ slug, phases, dataFiles = [], durationMinutes, 
 
                 {phase.content.doThis && (
                   <div>
-                    <h4 className="text-base font-semibold text-text-primary mb-3">Do this</h4>
+                    <h4 className="text-xs font-bold uppercase tracking-widest text-text-muted mb-3">Do this</h4>
                     <div className="prose text-text-secondary" dangerouslySetInnerHTML={{ __html: phase.content.doThis }} />
                   </div>
                 )}
@@ -257,17 +258,7 @@ export function ActivityPhases({ slug, phases, dataFiles = [], durationMinutes, 
                 ) : null}
 
                 {phase.content.gate && phase.content.gate.length > 0 && (
-                  <div className="rounded-lg border-2 border-green-300 bg-green-50 dark:border-green-500/30 dark:bg-green-950/30 p-4">
-                    <div className="text-xs font-bold uppercase tracking-wider text-green-700 dark:text-green-400 mb-3">Ready to move on?</div>
-                    <ul className="space-y-2">
-                      {phase.content.gate.map((item, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-green-900 dark:text-green-100">
-                          <Check size={15} className="text-green-600 dark:text-green-400 shrink-0 mt-0.5" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <GateChecklist items={phase.content.gate} />
                 )}
 
                 {phase.content.tip && (
@@ -491,6 +482,12 @@ function PromptBox({ text, label }: { text: string; label: string }) {
   );
 }
 
+const FIELD_COLORS = [
+  { bg: "bg-blue-500", light: "bg-blue-50 dark:bg-blue-950/40", border: "border-blue-200 dark:border-blue-800/50", text: "text-blue-700 dark:text-blue-300", ring: "focus:ring-blue-300/40 focus:border-blue-400" },
+  { bg: "bg-violet-500", light: "bg-violet-50 dark:bg-violet-950/40", border: "border-violet-200 dark:border-violet-800/50", text: "text-violet-700 dark:text-violet-300", ring: "focus:ring-violet-300/40 focus:border-violet-400" },
+  { bg: "bg-amber-500", light: "bg-amber-50 dark:bg-amber-950/40", border: "border-amber-200 dark:border-amber-800/50", text: "text-amber-700 dark:text-amber-300", ring: "focus:ring-amber-300/40 focus:border-amber-400" },
+];
+
 function PromptSkeleton({ spec, label }: { spec: SkeletonSpec; label: string }) {
   const [inputs, setInputs] = useState<Record<string, string>>({});
   const [copied, setCopied] = useState(false);
@@ -502,6 +499,7 @@ function PromptSkeleton({ spec, label }: { spec: SkeletonSpec; label: string }) 
   });
 
   const allFilled = spec.inputs.every((f) => inputs[f.key]?.trim());
+  const filledCount = spec.inputs.filter((f) => inputs[f.key]?.trim()).length;
 
   function copy() {
     navigator.clipboard.writeText(assembled).then(() => {
@@ -511,58 +509,124 @@ function PromptSkeleton({ spec, label }: { spec: SkeletonSpec; label: string }) 
   }
 
   return (
-    <div className="rounded-lg border border-border overflow-hidden">
-      <div className="flex items-center justify-between bg-[#1a1d2e] px-4 py-2.5">
-        <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">{label}</span>
+    <div className="rounded-xl border border-border overflow-hidden" style={{ boxShadow: "var(--shadow-sm)" }}>
+      {/* Header */}
+      <div className="flex items-center justify-between px-4 py-3" style={{ background: "var(--prompt-bg)" }}>
+        <span className="text-[11px] font-bold uppercase tracking-widest text-slate-400">{label}</span>
+        {spec.inputs.length > 0 && (
+          <span className="text-[11px] font-medium text-slate-500">
+            {filledCount}/{spec.inputs.length} filled
+          </span>
+        )}
       </div>
 
+      {/* Fixed context fields */}
       {Object.keys(spec.fixed).length > 0 && (
-        <div className="bg-surface-alt px-4 py-3 border-b border-border space-y-1.5">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-text-muted mb-2">Already in your prompt</p>
-          {Object.entries(spec.fixed).map(([key, value]) => (
-            <div key={key} className="flex gap-2 text-xs">
-              <span className="text-text-muted capitalize shrink-0 w-20">{key.replace(/_/g, " ")}:</span>
-              <span className="text-text-secondary">{value}</span>
-            </div>
-          ))}
+        <div className="bg-surface-alt px-4 py-3 border-b border-border">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-text-muted mb-2.5">Pre-filled context</p>
+          <div className="space-y-2">
+            {Object.entries(spec.fixed).map(([key, value]) => (
+              <div key={key} className="flex gap-3 text-xs leading-relaxed">
+                <span className="text-text-muted capitalize shrink-0 font-medium w-16">{key.replace(/_/g, " ")}:</span>
+                <span className="text-text-secondary">{value}</span>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
-      <div className="bg-surface px-4 py-4 space-y-4 border-b border-border">
-        {spec.inputs.map((field, i) => (
-          <div key={field.key}>
-            <label className="block text-xs font-semibold text-accent mb-1.5">
-              {String.fromCharCode(65 + i)}. {field.label}
-            </label>
-            <input
-              type="text"
-              value={inputs[field.key] || ""}
-              onChange={(e) => setInputs((v) => ({ ...v, [field.key]: e.target.value }))}
-              placeholder="Type your answer…"
-              className="w-full rounded-lg border border-accent/30 bg-surface-alt px-3 py-2 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent/60 transition-colors"
-            />
-          </div>
-        ))}
+      {/* Input fields */}
+      <div className="bg-surface px-4 py-5 space-y-5 border-b border-border">
+        {spec.inputs.map((field, i) => {
+          const color = FIELD_COLORS[i % FIELD_COLORS.length];
+          const letter = String.fromCharCode(65 + i);
+          const filled = !!inputs[field.key]?.trim();
+          return (
+            <div key={field.key}>
+              <label className="flex items-start gap-2.5 mb-2 cursor-pointer">
+                <span className={`inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-white mt-0.5 ${color.bg}`}>
+                  {letter}
+                </span>
+                <span className={`text-xs font-semibold leading-snug ${color.text}`}>{field.label}</span>
+              </label>
+              <input
+                type="text"
+                value={inputs[field.key] || ""}
+                onChange={(e) => setInputs((v) => ({ ...v, [field.key]: e.target.value }))}
+                placeholder={`Your answer for ${letter}…`}
+                className={`w-full rounded-lg border px-3 py-2 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 transition-all ${
+                  filled
+                    ? `${color.light} ${color.border} ${color.ring}`
+                    : `bg-surface-alt border-border ${color.ring}`
+                }`}
+              />
+            </div>
+          );
+        })}
       </div>
 
-      <div className="bg-[#111827] px-4 py-4">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-500">Your assembled prompt</span>
+      {/* Assembled preview */}
+      <div style={{ background: "var(--prompt-bg)" }} className="px-4 py-4">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Your assembled prompt</span>
           <button
             onClick={copy}
-            disabled={!allFilled}
-            className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1 text-xs font-semibold transition-colors ${
+            className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
               allFilled
-                ? "bg-white/10 hover:bg-white/20 text-gray-200"
-                : "bg-white/5 text-gray-600 cursor-not-allowed"
+                ? "bg-accent text-white hover:bg-accent/90 shadow-sm"
+                : "bg-white/5 text-slate-600 cursor-not-allowed"
             }`}
           >
-            {copied ? <CheckCheck size={13} className="text-green-400" /> : <Copy size={13} />}
-            {copied ? "Copied!" : allFilled ? "Copy" : "Fill all fields first"}
+            {copied ? <CheckCheck size={13} className="text-green-300" /> : <Copy size={13} />}
+            {copied ? "Copied!" : allFilled ? "Copy prompt" : "Fill all fields to copy"}
           </button>
         </div>
-        <pre className="text-sm text-gray-200 font-mono leading-relaxed whitespace-pre-wrap">{assembled}</pre>
+        <pre className="text-sm text-slate-300 font-[family-name:var(--font-mono)] leading-relaxed whitespace-pre-wrap">{assembled}</pre>
       </div>
+    </div>
+  );
+}
+
+function GateChecklist({ items }: { items: string[] }) {
+  const [checked, setChecked] = useState<boolean[]>(() => items.map(() => false));
+  const allChecked = checked.every(Boolean);
+
+  function toggle(i: number) {
+    setChecked((prev) => { const next = [...prev]; next[i] = !next[i]; return next; });
+  }
+
+  return (
+    <div className={`rounded-xl border-2 p-4 transition-all ${
+      allChecked
+        ? "border-green-400 bg-green-50 dark:border-green-500/50 dark:bg-green-950/30"
+        : "border-border bg-surface-alt"
+    }`}>
+      <div className="flex items-center justify-between mb-3">
+        <span className={`text-[11px] font-bold uppercase tracking-widest ${allChecked ? "text-green-700 dark:text-green-400" : "text-text-muted"}`}>
+          Ready to move on?
+        </span>
+        {allChecked && (
+          <span className="inline-flex items-center gap-1 rounded-full bg-green-500 px-2.5 py-0.5 text-[11px] font-bold text-white">
+            <Check size={11} /> All clear
+          </span>
+        )}
+      </div>
+      <ul className="space-y-2.5">
+        {items.map((item, i) => (
+          <li key={i} className="flex items-start gap-3 cursor-pointer" onClick={() => toggle(i)}>
+            <div className={`mt-0.5 flex h-4.5 w-4.5 shrink-0 items-center justify-center rounded border-2 transition-all ${
+              checked[i]
+                ? "border-green-500 bg-green-500"
+                : "border-border-strong bg-surface hover:border-green-400"
+            }`} style={{ width: 18, height: 18 }}>
+              {checked[i] && <Check size={11} className="text-white" strokeWidth={3} />}
+            </div>
+            <span className={`text-sm leading-snug transition-colors ${
+              checked[i] ? "text-text-muted line-through" : "text-text-secondary"
+            }`}>{item}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

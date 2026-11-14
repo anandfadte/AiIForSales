@@ -1,5 +1,5 @@
 # Scenario Brief
-> Frame the expansion as a strategic conversation, not a vendor pitch. (~3 min)
+> Read the scenario. Name Santos' priority per expansion area. Download your files. (~3 min)
 
 ## scenario
 
@@ -17,12 +17,12 @@ This is the longest skill chain in the program — 4 skills + /human. The key is
 
 ## do_this
 
-1. The CEO will decide in the first 3 minutes whether this is a vendor pitch or a strategic conversation. Write the first 3 sentences of your expansion pitch — WITHOUT mentioning any Genpact capability. If you can't open 3 sentences without mentioning Genpact, you're leading with the wrong layer.
-2. What would make Santos say "tell me more" vs. "this is just an upsell"? The difference is in whether you reference HER priorities first.
-3. For each of the 3 expansion areas, identify: what did Santos say about this in public? Start there.
+**Step 1 — Read the scenario above.** Santos said "show me you understand our industry challenges, not your service catalog." For the expansion pitch to land, every area must open with HER priorities, not Genpact's.
 
-**Also:** download your activity files from the panel on this page — you'll upload one of them in Phase 2 (Intel).
+**Step 2 — Name Santos' priority per area.** As a pod, complete this for each: *"Santos' stated priority for [IT ops / customer service / supply chain] is ____."* These become your Intel targets.
+
+**Step 3 — Download your activity files** from the panel on this page. You'll upload one of them in Phase 2 (Intel).
 
 ## checkpoint
 
-Can your team name the CEO's stated priorities for each expansion area — from her own words, not from your service catalog? If you're starting the expansion pitch with Genpact's capabilities before Santos's priorities, you're using the wrong order.
+Can your pod name Santos' likely priority for each of the 3 expansion areas — without searching? The scenario gives enough context. If you're defaulting to "utilities need modernization," that's generic. Santos needs industry-specific pressure, not category noise.

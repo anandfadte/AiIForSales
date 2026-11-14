@@ -1,5 +1,5 @@
 # Intel
-> Enable both plugins, then find Horizon's latest position and extract CEO Santos' exact words on each expansion area. (~8 min)
+> Enable both plugins, build your prompts, find Horizon's latest position and Santos' exact words. (~8 min)
 
 ## plugin
 Web Search, File Analysis
@@ -12,36 +12,45 @@ Both happen in the **same Claude conversation**. Context compounds.
 
 ## do_this
 
-1. Open Claude. Click the puzzle-piece icon and enable both **Web Search** and **File Analysis** plugins.
-2. Paste Prompt 1 — Claude will search for Horizon's latest performance and market trends across the 3 expansion areas.
-3. Upload **earnings_transcript_excerpt.docx** (from the files panel on this page), then paste Prompt 2 to extract Santos' exact words.
+**Step 1 — Open Claude.** Click the puzzle-piece icon and enable both **Web Search** and **File Analysis** plugins.
 
-Do NOT start a new chat between steps.
+**Step 2 — Build Prompt 1** using the skeleton below. Fill in fields A, B, C — then copy and send. Claude will search for Horizon's latest performance and what creates urgency across the 3 expansion areas.
 
-## prompt
-Search the web for two things:
+**Step 3 — Upload the file.** Add **earnings_transcript_excerpt.docx** (from the files panel on this page) to the same conversation — do NOT start a new chat.
 
-**Part 1 — Horizon Energy Solutions latest:**
-Horizon Energy Solutions, $7.3B utility across 6 US states. I'm preparing for a QBR where I'll pitch expansion into IT ops, customer service, and supply chain. Find: (1) latest earnings — revenue, margins, operational highlights; (2) CEO Maria Santos' stated priorities around IT modernization, customer experience, supply chain; (3) renewable energy transition progress (28% capacity); (4) any mentions of vendor evaluation or outsourcing changes; (5) how they compare to Duke Energy, Exelon, Southern Company. 400 words max.
+**Step 4 — Build Prompt 2** using the second skeleton below. Fill in field A — then copy and send to extract Santos' exact words for each expansion area.
 
-**Part 2 — Market trends making NOW the right time:**
-For each of Horizon's 3 expansion areas, find the market trend that makes NOW the right time for a $7B utility to act: (1) IT Operations — cybersecurity threats to utilities, grid modernization, NERC CIP compliance; (2) Customer Service — utility CX trends, AI chatbot adoption, J.D. Power benchmarks; (3) Supply Chain — utility procurement modernization, sustainability in $2B+ spend. For each: what is a peer utility already doing that creates urgency for Horizon? 300 words max.
+## prompt_skeleton
+{
+  "fixed": {
+    "company": "Horizon Energy Solutions · $7.3B utility · 6 US states",
+    "goal": "QBR expansion pitch · CEO Maria Santos · IT ops + customer service transformation + supply chain optimization"
+  },
+  "inputs": [
+    { "key": "signal_1", "label": "A. What operational challenge is a $7B utility CEO solving RIGHT NOW — in 2024/2025 specifically?" },
+    { "key": "signal_2", "label": "B. What peer utility has already moved on one of these 3 areas — making Horizon's inaction visible?" },
+    { "key": "signal_3", "label": "C. What would Santos say is 'different from every vendor who calls us' — using her own stated priorities?" }
+  ],
+  "template": "Research {company}. I'm preparing: {goal}. Find:\n1. {signal_1}\n2. {signal_2}\n3. {signal_3}\nFocus on the last 6 months. 400 words max."
+}
 
-## prompt_2
-I'm uploading Horizon Energy Solutions' Q3 earnings call transcript. Analyze:
-1. CEO SANTOS' 3 OPERATIONAL PRIORITIES — exact words, and how they map to our 3 expansion areas
-2. CFO KIM'S COMMENTS — specifically about replicating the F&A model in other areas (this is our opening)
-3. IT OPS SIGNAL — Santos' answer about wanting "domain expertise, not a generalist" — exact quote
-4. SUPPLY CHAIN SIGNAL — the "embarrassingly manual" comment — exact quote and context
-5. COMPETITIVE INTELLIGENCE — who are they evaluating?
-6. URGENCY SIGNALS — language that shows they're ready to move
+## prompt_2_skeleton
+{
+  "fixed": {
+    "file": "earnings_transcript_excerpt.docx (uploaded above)",
+    "extract": "CEO Santos' exact words for each expansion area: IT ops, customer service, supply chain — the specific quotes that open each conversation, not summaries"
+  },
+  "inputs": [
+    { "key": "focus", "label": "A. Which Santos quote is the strongest opening for the FIRST expansion area your pod will pitch?" }
+  ],
+  "template": "Analyze {file}. Extract: {extract}. {focus} Cross-reference with web research already in this conversation. 400 words max."
+}
 
-Cross-reference with web research. 400 words max.
+## gate
+Have Santos' exact words from the earnings transcript for at least two of the three expansion areas — not summary, the actual quote.
+Know a peer utility already moving on one of these areas — Horizon has seen the same news.
+Can open each expansion area with Santos' own language, not Genpact's service catalog.
 
 ## tip
 
 "Embarrassingly manual" is a gift. If Santos said it about supply chain on the earnings call, she's already sold on the problem — your job is to show the solution. Use her exact words: "You described supply chain as embarrassingly manual in Q3. Here's what a modern supply chain looks like at a utility your size."
-
-## checkpoint
-
-Before moving to Skills: for each of the 3 expansion areas, do you have (1) a live market fact that makes NOW the right time to act, and (2) a direct CEO quote that opens the conversation? Both are needed for all three areas — a pitch without Santos' own words is just a vendor presentation.

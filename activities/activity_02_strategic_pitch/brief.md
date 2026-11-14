@@ -1,5 +1,5 @@
 # Scenario Brief
-> Understand what this CFO needs before you build a single slide. (~3 min)
+> Read the scenario. Name the number that matters. Download your files. (~3 min)
 
 ## scenario
 
@@ -17,12 +17,12 @@ Torres is former Nordstrom VP Finance — she reads financial statements for bre
 
 ## do_this
 
-1. As a pod, identify: what is the ONE financial argument that would make a retail CFO lean forward?
-2. What's the "why now" — why can't Torres wait until next fiscal year?
-3. List the three numbers from the scenario that you MUST include in the business case. What would it mean for Cascade if each improved by 20%?
+**Step 1 — Read the scenario above** until you can answer: what single financial argument would make a retail CFO lean forward?
 
-**Also:** download your activity files from the panel on this page — you'll upload one of them in Phase 2 (Intel).
+**Step 2 — Name the hook.** As a pod, complete this sentence: *"The number Torres will react to most is ____ because it means ____."* You'll build your Intel prompt around this.
+
+**Step 3 — Download your activity files** from the panel on this page. You'll upload one of them in Phase 2 (Intel).
 
 ## checkpoint
 
-Can your team articulate why Rebecca Torres specifically would care — using her background (Nordstrom VP Finance), her mandate (150bps margin improvement in 18 months), and her stated requirement (ROI in year one)? Generic business cases fail her test.
+Can your pod complete the sentence — "The number Torres will react to is ___ because ___" — without searching anything yet? The numbers are in the scenario. If you're reaching for industry benchmarks already, re-read it.

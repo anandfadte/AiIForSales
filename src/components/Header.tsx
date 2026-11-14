@@ -16,28 +16,29 @@ export function Header() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-surface/80 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 border-b border-border bg-surface/90 backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-2 text-sm font-semibold tracking-tight text-text-primary hover:text-accent transition-colors">
-          <span className="text-accent font-bold">AI for Sales</span>
-          <span className="hidden sm:inline text-text-muted font-normal">& Marketing</span>
+        <Link href="/" className="flex items-center gap-2.5">
+          <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-accent text-[11px] font-black text-white tracking-tight">AI</span>
+          <span className="text-sm font-bold tracking-tight text-text-primary">for Sales</span>
+          <span className="hidden sm:inline text-xs text-text-muted font-medium">& Marketing</span>
         </Link>
-        <nav className="flex items-center gap-4 sm:gap-6">
+        <nav className="flex items-center gap-4 sm:gap-5">
           <Link
             href="/activities"
-            className={`text-sm transition-colors ${pathname.startsWith("/activities") ? "font-medium text-accent" : "text-text-secondary hover:text-text-primary"}`}
+            className={`text-sm font-medium transition-colors ${pathname.startsWith("/activities") ? "text-accent" : "text-text-secondary hover:text-text-primary"}`}
           >
             Activities
           </Link>
           {name && (
-            <span className="hidden sm:block text-xs text-text-muted border-l border-border pl-4">{name}</span>
+            <span className="hidden sm:block text-xs font-medium text-text-muted border-l border-border pl-4">{name}</span>
           )}
           <button
             onClick={toggle}
-            className="rounded-md p-2 text-text-muted hover:bg-surface-alt hover:text-text-primary transition-colors"
+            className="rounded-lg p-2 text-text-muted hover:bg-surface-alt hover:text-text-primary transition-colors"
             aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
           >
-            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
           </button>
         </nav>
       </div>

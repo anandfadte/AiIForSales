@@ -1,5 +1,5 @@
 # Scenario Brief
-> Understand what TrueNorth actually wants before answering a single question. (~3 min)
+> Read the RFI challenge. Name the differentiator. Download your files. (~3 min)
 
 ## scenario
 
@@ -19,13 +19,12 @@ TrueNorth's procurement team has said they're looking for "a partner with deep i
 
 ## do_this
 
-Before searching or uploading anything:
-1. As a pod, identify: which of the 15 questions are DIFFERENTIATING (where your answer determines whether you're shortlisted) vs. STANDARD (every vendor answers similarly)?
-2. What's the one claim Accenture, Cognizant, and EXL will ALL make? How does Genpact differ?
-3. TrueNorth said "generic responses will be scored lower." What does a generic response look like? What does a specific one look like?
+**Step 1 — Read the scenario above.** The RFI says "generic responses will be scored lower." Your brief job: agree what "generic" looks like so you can avoid it.
 
-**Also:** download your activity files from the panel on this page — you'll upload one of them in Phase 2 (Intel).
+**Step 2 — Name the differentiator.** As a pod, complete this sentence: *"One thing Accenture CANNOT honestly say about Genpact is ____."* This becomes the spine of every differentiating answer.
+
+**Step 3 — Download your activity files** from the panel on this page. You'll upload one of them in Phase 2 (Intel).
 
 ## checkpoint
 
-Can your team name two things that are specific about TrueNorth — not generic P&C insurer facts, but things about THIS company that should appear in your RFI responses? If not, the web research in Phase 2 is critical before you answer a single question.
+Can your pod complete the sentence — "One thing Accenture cannot say is ____" — without searching anything? If your answer is vague ("we have better relationships"), go sharper. The RFI is asking for proof, not positioning.

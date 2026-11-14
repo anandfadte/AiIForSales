@@ -1,47 +1,56 @@
 # Intel
-> Enable both plugins, then build client context and analyze the RFI before writing a single answer. (~8 min)
+> Enable both plugins, build your prompts, find TrueNorth's language and the differentiating questions. (~8 min)
 
 ## plugin
 Web Search, File Analysis
 
 ## context
 
-TrueNorth's RFI says "generic responses will be scored lower." The intel phase is what prevents generic. Web search gives you TrueNorth's specific language and competitive context (what Accenture and EXL are already saying). The RFI analysis tells you which of the 15 questions actually determines the shortlist — where to spend your time.
+TrueNorth's RFI says "generic responses will be scored lower." The intel phase is what prevents generic. Web search gives you TrueNorth's specific language and competitive context — what Accenture and EXL are already saying. The RFI analysis tells you which of the 15 questions actually determines the shortlist.
 
 Both happen in the **same Claude conversation**. Context compounds.
 
 ## do_this
 
-1. Open Claude. Click the puzzle-piece icon and enable both **Web Search** and **File Analysis** plugins.
-2. Paste Prompt 1 — Claude will research TrueNorth and map the competitive landscape.
-3. Upload **sample_rfi.docx** (from the files panel on this page), then paste Prompt 2 to find out which questions determine the shortlist.
+**Step 1 — Open Claude.** Click the puzzle-piece icon and enable both **Web Search** and **File Analysis** plugins.
 
-Do NOT start a new chat between steps.
+**Step 2 — Build Prompt 1** using the skeleton below. Fill in fields A, B, C — then copy and send. Claude will research TrueNorth and map what competitors are claiming.
 
-## prompt
-Search the web for two things:
+**Step 3 — Upload the file.** Add **sample_rfi.docx** (from the files panel on this page) to the same conversation — do NOT start a new chat.
 
-**Part 1 — TrueNorth Insurance Group:**
-TrueNorth Insurance Group, $8.4B property & casualty insurer. I'm responding to their RFI for claims processing transformation. Find: (1) their business overview — lines of business, geographic footprint, recent performance; (2) CEO/COO statements about claims modernization; (3) their claims technology stack — Guidewire, Duck Creek, or other; (4) recent news — leadership changes, M&A, regulatory issues, catastrophe impact; (5) any existing outsourcing partners being replaced. I need to speak THEIR language in the RFI responses. 400 words max.
+**Step 4 — Build Prompt 2** using the second skeleton below. Fill in field A — then copy and send to rank the 15 questions by shortlist impact.
 
-**Part 2 — Competitive landscape:**
-How do Accenture, Cognizant, and EXL position their insurance claims processing capabilities? What is each one saying to TrueNorth right now? Specifically: Accenture's SynOps platform claims, Cognizant's TriZetto/claims offerings, EXL's analytics-led approach. Where can Genpact differentiate without naming competitors directly? 300 words max.
+## prompt_skeleton
+{
+  "fixed": {
+    "company": "TrueNorth Insurance Group · $8.4B · property & casualty insurer",
+    "goal": "RFI response · claims processing transformation · competing vs Accenture, Cognizant, EXL"
+  },
+  "inputs": [
+    { "key": "signal_1", "label": "A. What is TrueNorth specifically known for in P&C claims — different from a generic insurer?" },
+    { "key": "signal_2", "label": "B. What claim are Accenture, Cognizant, AND EXL all making? (find the common denominator)" },
+    { "key": "signal_3", "label": "C. What language in TrueNorth's RFI tells you what they're REALLY buying — beyond the stated requirements?" }
+  ],
+  "template": "Research {company}. I'm preparing: {goal}. Find:\n1. {signal_1}\n2. {signal_2}\n3. {signal_3}\n400 words max."
+}
 
-## prompt_2
-I'm uploading TrueNorth Insurance Group's RFI for claims processing transformation (15 questions). Analyze it:
-1. KEY THEMES — what do the 15 questions collectively tell us about TrueNorth's priorities?
-2. DIFFERENTIATING vs STANDARD — which questions are table stakes (every vendor answers similarly) vs. which determine the shortlist?
-3. AI/ML DEPTH questions — identify and flag them (expect questions 3, 5, 12, 13)
-4. DOMAIN EXPERTISE questions — identify and flag them (expect questions 1, 2, 7, 8, 10)
-5. CULTURAL FIT test — which question tests fit vs. capability?
-6. ELIMINATION RISK — which questions, if answered poorly, could eliminate us?
+## prompt_2_skeleton
+{
+  "fixed": {
+    "file": "sample_rfi.docx (uploaded above)",
+    "extract": "which of the 15 questions are differentiating vs table stakes, which 3-4 most likely determine the shortlist, and which questions if answered poorly could eliminate Genpact"
+  },
+  "inputs": [
+    { "key": "focus", "label": "A. Which single question in this RFI, if answered poorly, eliminates Genpact? Start there." }
+  ],
+  "template": "Analyze the RFI in {file}. Extract: {extract}. {focus} Output a prioritized list. 400 words max."
+}
 
-Prioritize where I spend the most time crafting responses. Output a ranked list. 400 words max.
+## gate
+Can name two things specific to TrueNorth's business — not generic P&C insurer facts — that must appear in the RFI responses.
+Know the one claim Accenture, Cognizant, and EXL will all make — and have a differentiated response ready.
+Have ranked the 15 questions: know which 3-4 determine the shortlist, which are table stakes.
 
 ## tip
 
-The competitive search is as important as the client search. Knowing what Accenture claims lets you write responses that differentiate without naming them. If Accenture leads with SynOps platform, lead with specific insurance outcomes (94% fraud detection accuracy, specific processing benchmarks) rather than platform names.
-
-## checkpoint
-
-Before moving to Skills: can you name (1) one thing specific about TrueNorth's business that must appear in your RFI answers, (2) one claim from a competitor you can implicitly differentiate against, and (3) the 3-4 questions most likely to determine whether Genpact makes the shortlist? All three are needed.
+The competitive search is as important as the client search. Knowing what Accenture claims lets you write responses that differentiate without naming them. If Accenture leads with their SynOps platform, lead with specific insurance outcomes (94% fraud detection accuracy, specific processing benchmarks) rather than platform names.

@@ -1,5 +1,5 @@
 # Intel
-> Enable both plugins, then find Cascade's real financial position and extract the CFO's own words. (~8 min)
+> Enable both plugins, build your prompts, find Cascade's real financial position. (~8 min)
 
 ## plugin
 Web Search, File Analysis
@@ -8,40 +8,50 @@ Web Search, File Analysis
 
 Torres said "numbers from OUR business, not industry averages." Your intel phase delivers exactly that — live web signals about Cascade's competitive pressure, plus exact CFO quotes from their own investor presentation. When you can reference Rebecca Torres' own words back to her, the meeting changes.
 
-Both happen in the **same Claude conversation**. Context compounds.
+Both happen in the **same Claude conversation**. Context compounds between prompts.
 
 ## do_this
 
-1. Open Claude. Click the puzzle-piece icon and enable both **Web Search** and **File Analysis** plugins.
-2. Paste Prompt 1 — Claude will research Cascade's financial position and the industry urgency that makes inaction costly.
-3. Upload **investor_presentation_excerpt.docx** (from the files panel on this page), then paste Prompt 2 to extract Torres' exact words.
+**Step 1 — Open Claude.** Click the puzzle-piece icon and enable both **Web Search** and **File Analysis** plugins.
 
-Do NOT start a new chat between steps.
+**Step 2 — Build Prompt 1** using the skeleton below. Fill in fields A, B, C — then copy the assembled prompt and send it. Claude will search for Cascade's financial position and what makes inaction costly.
 
-## prompt
-Search the web for two things:
+**Step 3 — Upload the file.** Add **investor_presentation_excerpt.docx** (from the files panel on this page) to the same conversation — do NOT start a new chat.
 
-**Part 1 — Cascade Retail Holdings financials:**
-Cascade Retail Holdings, $3.9B omnichannel retailer in Seattle. I'm building a CFO business case for an operations transformation pitch. Find: (1) latest quarterly earnings — revenue, margins, e-commerce growth, analyst sentiment; (2) how their 4.2% operating margin compares to Target, Nordstrom, Macy's; (3) any mentions of DSO, working capital efficiency, or operational challenges; (4) strategic announcements — transformation initiatives, vendor selections. I need THEIR numbers, not industry norms. 400 words max.
+**Step 4 — Build Prompt 2** using the second skeleton below. Fill in field A — then copy and send it to extract Torres' exact words.
 
-**Part 2 — Why the CFO can't wait:**
-Search for pressures facing omnichannel retailers that create urgency NOW: (1) are retail peers investing in back-office automation? Any recent case studies? (2) what's the financial cost of manual O2C for a $4B retailer? (3) how is Cascade's e-commerce growth (28%, growing 18% YoY) straining traditional processes? Find one live market fact that makes inaction costly — not slower. 300 words max.
+## prompt_skeleton
+{
+  "fixed": {
+    "company": "Cascade Retail Holdings · $3.9B · Seattle · omnichannel retailer",
+    "goal": "CFO business case meeting · Rebecca Torres (ex-Nordstrom VP Finance) · ROI + payback period + why now"
+  },
+  "inputs": [
+    { "key": "signal_1", "label": "A. What financial pressure is a $4B retail CFO under RIGHT NOW — earnings, margins, working capital?" },
+    { "key": "signal_2", "label": "B. What makes Cascade's situation urgent TODAY — not 6 months from now?" },
+    { "key": "signal_3", "label": "C. What would Torres say is 'different from every other pitch I've heard'?" }
+  ],
+  "template": "Research {company}. I'm preparing: {goal}. Find:\n1. {signal_1}\n2. {signal_2}\n3. {signal_3}\nFocus on the last 6 months. 400 words max."
+}
 
-## prompt_2
-I'm uploading Cascade Retail Holdings' Q3 FY2024 investor presentation. Analyze and extract:
-1. FINANCIAL PRIORITIES — what did the CFO say matters most?
-2. EXACT CFO QUOTES — Torres' words about margin compression and operational efficiency (use them verbatim)
-3. TARGETS — the 150bps margin improvement target and 18-month timeline
-4. WORKING CAPITAL — $25M+ release target and how they plan to get there
-5. PARTNER SIGNALS — what did Torres say about evaluating partners?
-6. CAPEX — how much is allocated to digital/technology?
+## prompt_2_skeleton
+{
+  "fixed": {
+    "file": "investor_presentation_excerpt.docx (uploaded above)",
+    "extract": "CFO exact quotes about margin compression, working capital targets, and the 150bps timeline — verbatim, not paraphrase",
+    "cross_ref": "Cross-reference with the web research already in this conversation. Where do the investor slides confirm or strengthen the case?"
+  },
+  "inputs": [
+    { "key": "focus", "label": "A. What number or exact Torres quote would hit hardest as an OPENING LINE in this meeting?" }
+  ],
+  "template": "Analyze {file}. Extract: {extract}. {focus} {cross_ref} 400 words max."
+}
 
-Cross-reference with web research already in this conversation. Where do the investor slides confirm or strengthen the case? 400 words max.
+## gate
+Have Torres' exact words from the investor presentation — not a paraphrase, the actual quote — ready to open the meeting.
+Know what a 20% improvement in Cascade's 44-day DSO delivers in dollar terms — using their own working capital figures.
+Can say "why now" in one sentence using Cascade's own numbers — not industry benchmarks.
 
 ## tip
 
 The CFO's exact words are your most powerful tool. If Torres said "entirely operational" about margin compression, use that phrase back to her — it shows you listened, not just researched. The best opening line in the meeting starts with "In your Q3 investor presentation, you said..."
-
-## checkpoint
-
-Before moving to Skills: do you have (1) one live fact about Cascade's competitive position, (2) the reason a retail CFO can't wait until next fiscal year, and (3) at least one direct quote from Rebecca Torres you can reference in the first 5 minutes? All three are needed before the skills chain.
