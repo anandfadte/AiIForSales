@@ -44,7 +44,7 @@ export function ActivityGrid({ activities, domains }: { activities: ActivityCard
           <Link
             key={a.slug}
             href={`/activities/${a.slug}`}
-            className="group relative rounded-xl border border-border bg-surface p-5 transition-all hover:shadow-md hover:border-accent/50 flex flex-col"
+            className="group relative rounded-xl border border-border bg-surface p-5 shadow-sm dark:shadow-none transition-all hover:shadow-md hover:border-accent/50 hover:bg-surface-alt flex flex-col"
           >
             <div className="mb-3">
               <span className="text-3xl font-bold text-accent/80">{String(a.sort_order).padStart(2, "0")}</span>
