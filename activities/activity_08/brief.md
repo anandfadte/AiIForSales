@@ -3,7 +3,7 @@
 
 ## scenario
 
-You're a Client Partner managing **Legal & General Group** (£1.1T assets under management, UK's leading insurer and investment manager). 18 months of relationship. You have a meeting with **CFO Catherine Morris** in 48 hours about a **£5M finance operations transformation engagement**.
+You are the Account Head at Genpact managing **Legal & General Group** (£1.1T assets under management, UK's leading insurer and investment manager). 18 months of relationship. You have a meeting with **CFO Catherine Morris** in 48 hours about a **£5M finance operations transformation engagement**.
 
 She said: *"Come with numbers — ROI, payback period, why invest now versus next fiscal year."*
 

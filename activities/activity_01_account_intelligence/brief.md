@@ -3,7 +3,7 @@
 
 ## scenario
 
-You are a Senior Account Executive at Genpact pursuing a new logo in financial services. Your Sales Director has arranged a first meeting with the **VP of Operations at Barclays UK** — overseeing retail banking operations across 25 million+ customers. The meeting is in **5 days**.
+You are the Account Head at Genpact pursuing a new logo in financial services. Your Sales Director has arranged a first meeting with the **VP of Operations at Barclays UK** — overseeing retail banking operations across 25 million+ customers. The meeting is in **5 days**.
 
 The VP, **Alex Thornton**, agreed to a 30-minute meeting and said: *"I take a lot of these calls. Show me you understand Barclays' operations — not just what your company sells. We're in the middle of a significant efficiency programme. If you can't connect to that, we're done in 10 minutes."*
 

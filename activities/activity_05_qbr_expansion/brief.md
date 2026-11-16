@@ -3,7 +3,7 @@
 
 ## scenario
 
-You're a Client Partner managing Genpact's relationship with **Lloyds Banking Group** — the UK's largest retail bank with 26 million customers and £450B in total assets. Your existing engagement (£6M/year, finance & accounting operations) has been solid for 3 years. The QBR is in 2 weeks, and your SVP wants you to pitch expansion into **3 new areas**: mortgage operations, customer complaints management, and financial crime compliance.
+You are the Account Head at Genpact managing the relationship with **Lloyds Banking Group** — the UK's largest retail bank with 26 million customers and £450B in total assets. Your existing engagement (£6M/year, finance & accounting operations) has been solid for 3 years. The QBR is in 2 weeks, and your SVP wants you to pitch expansion into **3 new areas**: mortgage operations, customer complaints management, and financial crime compliance.
 
 Lloyds' CEO, **David Hartley**, will attend the QBR for the first time. He said: *"I'm open-minded but sceptical. Show me you understand our strategic challenges, not just your service catalogue."*
 

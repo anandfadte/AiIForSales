@@ -3,7 +3,7 @@
 
 ## scenario
 
-You're a Client Partner at Genpact pursuing a **£8M engagement** with Aviva plc — the UK's largest insurer with £26B in gross written premium and 19 million customers across life, general, and health insurance.
+You are the Account Head at Genpact pursuing a **£8M engagement** with Aviva plc — the UK's largest insurer with £26B in gross written premium and 19 million customers across life, general, and health insurance.
 
 Their Finance Director, **Richard Wallis**, agreed to one meeting: *"Bring a business case that speaks CFO, not consultant. I want ROI, payback period, and why this can't wait. If I don't see numbers from OUR business — not generic benchmarks — I'm done in 15 minutes."*
 

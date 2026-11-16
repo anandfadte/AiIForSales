@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import {
   Check, ChevronDown, ChevronRight, Lock, Eye, Lightbulb,
   Timer, Play, Pause, RotateCcw, Copy, CheckCheck,
-  Globe, FileText, Zap, Sparkles,
+  Globe, FileText, Zap, Sparkles, Unlock,
 } from "lucide-react";
 
 interface SkeletonField {
@@ -478,7 +478,10 @@ function SkillChainDisplay({ raw }: { raw: string }) {
 }
 
 function PromptBox({ text, label }: { text: string; label: string }) {
+  const [modalOpen, setModalOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+
+  const preview = text.length > 180 ? text.slice(0, 180).trimEnd() + "…" : text;
 
   function copyToClipboard() {
     navigator.clipboard.writeText(text).then(() => {
@@ -488,19 +491,58 @@ function PromptBox({ text, label }: { text: string; label: string }) {
   }
 
   return (
-    <div className="rounded-lg border border-border overflow-hidden">
-      <div className="flex items-center justify-between bg-[#1a1d2e] px-4 py-2.5">
-        <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">{label}</span>
-        <button
-          onClick={copyToClipboard}
-          className="inline-flex items-center gap-1.5 rounded-md px-3 py-1 text-xs font-semibold transition-colors bg-white/10 hover:bg-white/20 text-gray-200"
-        >
-          {copied ? <CheckCheck size={13} className="text-green-400" /> : <Copy size={13} />}
-          {copied ? "Copied!" : "Copy"}
-        </button>
+    <>
+      {/* Locked card */}
+      <div className="rounded-lg border border-border overflow-hidden">
+        <div className="px-4 py-2.5 bg-surface-alt border-b border-border">
+          <span className="text-xs font-semibold uppercase tracking-wider text-text-muted">{label}</span>
+        </div>
+        <div className="flex items-start gap-4 px-4 py-4 bg-surface">
+          <p className="flex-1 text-sm text-text-secondary font-mono leading-relaxed line-clamp-3">{preview}</p>
+          <button
+            onClick={() => setModalOpen(true)}
+            className="shrink-0 inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-bold bg-accent text-white hover:bg-accent/90 transition-colors whitespace-nowrap"
+          >
+            <Unlock size={13} />
+            Unlock Prompt
+          </button>
+        </div>
       </div>
-      <pre className="bg-[#111827] px-4 py-4 text-sm text-gray-200 font-mono leading-relaxed whitespace-pre-wrap overflow-x-auto">{text}</pre>
-    </div>
+
+      {/* Modal */}
+      {modalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          onClick={() => setModalOpen(false)}
+        >
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+          <div
+            className="relative w-full max-w-2xl rounded-xl border border-border overflow-hidden shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between bg-[#1a1d2e] px-4 py-3">
+              <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">{label}</span>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={copyToClipboard}
+                  className="inline-flex items-center gap-1.5 rounded-md px-3 py-1 text-xs font-semibold transition-colors bg-white/10 hover:bg-white/20 text-gray-200"
+                >
+                  {copied ? <CheckCheck size={13} className="text-green-400" /> : <Copy size={13} />}
+                  {copied ? "Copied!" : "Copy"}
+                </button>
+                <button
+                  onClick={() => setModalOpen(false)}
+                  className="rounded-md px-2 py-1 text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+            <pre className="bg-[#111827] px-4 py-5 text-sm text-gray-200 font-mono leading-relaxed whitespace-pre-wrap overflow-x-auto max-h-[60vh] overflow-y-auto">{text}</pre>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
