@@ -472,7 +472,7 @@ function SkillChainDisplay({ raw }: { raw: string }) {
           </span>
         ))}
       </div>
-      <p className="mt-2 text-xs text-text-muted">Run each skill in the <strong className="text-text-secondary">same Claude conversation</strong> — context compounds across each step.</p>
+      <p className="mt-2 text-xs text-text-muted">Run each plugin in the <strong className="text-text-secondary">same Claude conversation</strong> — context compounds across each step.</p>
     </div>
   );
 }

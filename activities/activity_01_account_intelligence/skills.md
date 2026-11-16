@@ -13,7 +13,7 @@ Stay in the same conversation — do NOT start a new chat. /earnings-agent build
 
 ## transition
 
-Stay in the same conversation — do NOT start a new chat. Run /human in Phase 4 to combine the account profile and financial intelligence into a polished pre-meeting brief.
+Stay in the same conversation — do NOT start a new chat. Run /human in Phase 3 to combine the account profile and financial intelligence into a polished pre-meeting brief.
 
 ## tip
 
