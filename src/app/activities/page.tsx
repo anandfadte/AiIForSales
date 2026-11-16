@@ -2,10 +2,9 @@ import { getActivities } from "@/lib/activities";
 import { ActivityGrid } from "@/components/ActivityGrid";
 
 const PHASES = [
-  { name: "Brief", time: "~5 min", label: "Frame the deal" },
-  { name: "Plugins", time: "~8 min", label: "Build intelligence with Sales Plugin" },
-  { name: "Plugin Chain", time: "~7 min", label: "Run the plugin chain" },
-  { name: "Humanize", time: "~5 min", label: "/human always last" },
+  { name: "Phase 1", time: "~5 min", label: "Build intelligence" },
+  { name: "Phase 2", time: "~7 min", label: "Build the content" },
+  { name: "Phase 3", time: "~5 min", label: "Humanize with /human" },
 ];
 
 export default async function ActivitiesPage() {
@@ -37,14 +36,14 @@ export default async function ActivitiesPage() {
         </h1>
         <p className="mt-3 max-w-[680px] text-text-secondary">
           Each activity drops your team into a live deal scenario.
-          Work through four phases — using Claude Sales Plugin commands in one session — to produce a client-ready output in 25 minutes.
+          Read the brief, then work through three phases using Claude Sales Plugin commands in one session — to produce a client-ready output in 25 minutes.
         </p>
       </div>
 
       {/* Skills stack diagram */}
       <div className="mb-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <p className="mb-6 text-xs font-semibold uppercase tracking-widest text-text-muted">
-          The plugin chain you will practise
+          Three phases — same Claude conversation
         </p>
 
         {/* Stepper */}
@@ -78,14 +77,14 @@ export default async function ActivitiesPage() {
 
         {/* Plugin & skill legend */}
         <div className="mt-6 flex flex-wrap gap-3 border-t border-border pt-4">
-          <span className="inline-flex items-center gap-1.5 rounded-md bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-700 dark:text-sky-400">
-            Phase 2 — Sales Plugin commands
+          <span className="inline-flex items-center gap-1.5 rounded-md bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-700 dark:text-purple-400">
+            Phase 1 — Build intelligence
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-md bg-orange-500/10 px-3 py-1 text-xs font-medium text-orange-700 dark:text-orange-400">
-            Phase 3 — Plugin chain
+            Phase 2 — Build the content
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-md bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-700 dark:text-amber-400">
-            Phase 4 — /human always last
+            Phase 3 — /human always last
           </span>
         </div>
 

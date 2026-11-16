@@ -9,6 +9,7 @@
   "difficulty": "Advanced",
   "phases": 4,
   "plugins": [],
+  "phase1_count": 2,
   "skill_chain": [
     "/earnings-agent",
     "/account-research",

@@ -5,8 +5,6 @@ import {
   ArrowRight,
   ChevronLeft,
   Clock,
-  FileText,
-  Globe,
   Layers,
 } from "lucide-react";
 import { getActivities, getActivityBySlug } from "@/lib/activities";
@@ -72,59 +70,77 @@ export default async function ActivityPage({
         </div>
 
         {/* Plugin + Skill sequence strip */}
-        {(config.plugins?.length > 0 || (config.skill_chain && config.skill_chain.length > 0)) && (
-          <div className="rounded-xl border border-border overflow-hidden">
-            <div className="px-4 pt-3 pb-2.5 bg-surface-alt border-b border-border">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-text-muted">Your sequence — run in this order</span>
-            </div>
-            {config.plugins?.length > 0 && (
-              <div className="px-4 py-3 flex items-center gap-4 border-b border-border/50 bg-surface">
-                <div className="shrink-0 w-24">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-blue-500">Phase 1</span>
-                  <p className="text-[10px] text-text-muted mt-0.5">Enable plugins</p>
-                </div>
-                <div className="flex flex-wrap items-center gap-2">
-                  {config.plugins.map((p, i) => {
-                    const isFile = p.toLowerCase().includes("file");
-                    return (
-                      <span key={i} className={`inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-semibold ${
-                        isFile
-                          ? "bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800 text-purple-700 dark:text-purple-300"
-                          : "bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300"
-                      }`}>
-                        {isFile ? <FileText size={11} className="mr-1" /> : <Globe size={11} className="mr-1" />}
-                        {p}
-                      </span>
-                    );
-                  })}
-                </div>
+        {config.skill_chain && config.skill_chain.length > 0 && (() => {
+          const chain = config.skill_chain;
+          const humanIdx = chain.lastIndexOf("/human");
+          const actionChain = humanIdx >= 0 ? chain.slice(0, humanIdx) : chain;
+          const hasHuman = humanIdx >= 0;
+          const p1Count = config.phase1_count ?? 1;
+          const phase1 = actionChain.slice(0, p1Count);
+          const phase2 = actionChain.slice(p1Count);
+
+          const renderChip = (skill: string, idx: number, arr: string[]) => (
+            <span key={idx} className="flex items-center gap-1.5">
+              <span className="rounded-md px-2.5 py-1 font-mono text-xs font-bold bg-orange-50 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-800 text-orange-700 dark:text-orange-300">
+                {skill}
+              </span>
+              {idx < arr.length - 1 && <span className="text-text-muted text-xs">→</span>}
+            </span>
+          );
+
+          return (
+            <div className="rounded-xl border border-border overflow-hidden">
+              <div className="px-4 pt-3 pb-2.5 bg-surface-alt border-b border-border">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-text-muted">Your sequence — run in this order</span>
               </div>
-            )}
-            {config.skill_chain && config.skill_chain.length > 0 && (
-              <div className="px-4 py-3 flex items-center gap-4 bg-surface">
-                <div className="shrink-0 w-24">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-orange-500">{config.plugins?.length > 0 ? "Phase 2" : "Phase 1"}</span>
-                  <p className="text-[10px] text-text-muted mt-0.5">Plugin chain</p>
+
+              {/* Phase 1 */}
+              {phase1.length > 0 && (
+                <div className="px-4 py-3 flex items-center gap-4 border-b border-border/50 bg-surface">
+                  <div className="shrink-0 w-24">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-purple-500">Phase 1</span>
+                    <p className="text-[10px] text-text-muted mt-0.5">Build intelligence</p>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    {phase1.map((s, i) => renderChip(s, i, phase1))}
+                  </div>
                 </div>
-                <div className="flex flex-wrap items-center gap-2">
-                  {config.skill_chain.map((skill, i) => (
-                    <span key={i} className="flex items-center gap-1.5">
-                      <span className={`rounded-md px-2.5 py-1 font-mono text-xs font-bold ${
-                        skill === "/human"
-                          ? "bg-amber-100 dark:bg-amber-900/30 border border-amber-300 dark:border-amber-700 text-amber-800 dark:text-amber-200"
-                          : "bg-orange-50 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-800 text-orange-700 dark:text-orange-300"
-                      }`}>{skill}</span>
-                      {i < config.skill_chain.length - 1 && <span className="text-text-muted text-xs">→</span>}
+              )}
+
+              {/* Phase 2 */}
+              {phase2.length > 0 && (
+                <div className="px-4 py-3 flex items-center gap-4 border-b border-border/50 bg-surface">
+                  <div className="shrink-0 w-24">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-orange-500">Phase 2</span>
+                    <p className="text-[10px] text-text-muted mt-0.5">Build content</p>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    {phase2.map((s, i) => renderChip(s, i, phase2))}
+                  </div>
+                </div>
+              )}
+
+              {/* Phase 3 — Humanize */}
+              {hasHuman && (
+                <div className="px-4 py-3 flex items-center gap-4 bg-surface">
+                  <div className="shrink-0 w-24">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-amber-500">Phase 3</span>
+                    <p className="text-[10px] text-text-muted mt-0.5">Humanize</p>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="rounded-md px-2.5 py-1 font-mono text-xs font-bold bg-amber-100 dark:bg-amber-900/30 border border-amber-300 dark:border-amber-700 text-amber-800 dark:text-amber-200">
+                      /human
                     </span>
-                  ))}
+                  </div>
                 </div>
+              )}
+
+              <div className="px-4 py-2.5 border-t border-border/50 bg-surface-alt/60">
+                <p className="text-[11px] text-text-muted">Run all plugins in the <strong className="text-text-secondary">same Claude conversation</strong> — each phase builds on the previous.</p>
               </div>
-            )}
-            <div className="px-4 py-2.5 border-t border-border/50 bg-surface-alt/60">
-              <p className="text-[11px] text-text-muted">Run all plugins in the <strong className="text-text-secondary">same Claude conversation</strong> — each step builds on the previous.</p>
             </div>
-          </div>
-        )}
+          );
+        })()}
       </section>
 
       {/* Phases */}

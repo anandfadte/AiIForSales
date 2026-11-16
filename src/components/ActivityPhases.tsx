@@ -397,9 +397,9 @@ export function ActivityPhases({ slug, phases, dataFiles = [], durationMinutes, 
 function LayerProgressBar({ phaseStates, phases }: { phaseStates: PhaseStatus[]; phases: PhaseInfo[] }) {
   const layers = [
     { key: "brief", label: "Brief", sub: "Read the deal", icon: Globe, color: "text-blue-500" },
-    { key: "intel", label: "Plugins", sub: "Build intelligence", icon: FileText, color: "text-purple-500" },
-    { key: "skills", label: "Plugin Chain", sub: "Run the chain", icon: Zap, color: "text-orange-500" },
-    { key: "humanize", label: "Humanize", sub: "Polish the output", icon: Sparkles, color: "text-amber-500" },
+    { key: "intel", label: "Phase 1", sub: "Build intelligence", icon: FileText, color: "text-purple-500" },
+    { key: "skills", label: "Phase 2", sub: "Build content", icon: Zap, color: "text-orange-500" },
+    { key: "humanize", label: "Phase 3", sub: "Humanize", icon: Sparkles, color: "text-amber-500" },
   ];
 
   return (

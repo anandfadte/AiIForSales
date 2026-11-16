@@ -25,6 +25,7 @@ export interface ActivityConfig {
   difficulty: string;
   phases: number;
   plugins: string[];
+  phase1_count?: number;
   skill_chain: string[];
   data_files: DataFile[];
   learning_objectives: string[];

@@ -9,6 +9,7 @@
   "difficulty": "Intermediate",
   "phases": 4,
   "plugins": [],
+  "phase1_count": 1,
   "skill_chain": [
     "/rfi-response",
     "/solution-assistant",

@@ -9,6 +9,7 @@
   "difficulty": "Foundation",
   "phases": 4,
   "plugins": [],
+  "phase1_count": 1,
   "skill_chain": [
     "/account-research",
     "/earnings-agent",
