@@ -5,13 +5,10 @@
   "subtitle": "CEO attending for the first time. Existing account. Expand into 3 new areas.",
   "domain": "Account Expansion",
   "duration_minutes": 25,
-  "ai_tool": "Claude (with Web Search + File Analysis plugins)",
+  "ai_tool": "Claude (Sales Plugin)",
   "difficulty": "Advanced",
   "phases": 4,
-  "plugins": [
-    "Web Search",
-    "File Analysis"
-  ],
+  "plugins": [],
   "skill_chain": [
     "/earnings-agent",
     "/account-research",
@@ -24,7 +21,7 @@
       "filename": "existing_account_brief.docx",
       "display_name": "Existing Account Brief",
       "type": "docx",
-      "role": "3 years of Horizon Energy engagement history",
+      "role": "3 years of Lloyds Banking Group engagement history",
       "use_in": "Intel · background reference"
     },
     {
@@ -38,7 +35,7 @@
       "filename": "earnings_transcript_excerpt.docx",
       "display_name": "Earnings Transcript",
       "type": "docx",
-      "role": "CEO Santos' Q3 statements",
+      "role": "CEO Hartley's Q3 statements",
       "use_in": "Upload in Intel · Prompt 2"
     }
   ],
@@ -46,7 +43,7 @@
     "Layer financial signals onto existing account knowledge",
     "Identify expansion opportunities tied to the CEO's stated priorities",
     "Build a QBR narrative that opens three new conversations",
-    "Chain four skills in one conversation without losing context"
+    "Chain four plugins in one conversation without losing context"
   ],
   "deliverable": "QBR expansion pitch for 3 service areas"
 }

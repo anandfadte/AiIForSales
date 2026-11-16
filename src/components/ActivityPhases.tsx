@@ -397,8 +397,8 @@ export function ActivityPhases({ slug, phases, dataFiles = [], durationMinutes, 
 function LayerProgressBar({ phaseStates, phases }: { phaseStates: PhaseStatus[]; phases: PhaseInfo[] }) {
   const layers = [
     { key: "brief", label: "Brief", sub: "Read the deal", icon: Globe, color: "text-blue-500" },
-    { key: "intel", label: "Intel", sub: "Research with AI", icon: FileText, color: "text-purple-500" },
-    { key: "skills", label: "Skills", sub: "Run the chain", icon: Zap, color: "text-orange-500" },
+    { key: "intel", label: "Plugins", sub: "Build intelligence", icon: FileText, color: "text-purple-500" },
+    { key: "skills", label: "Plugin Chain", sub: "Run the chain", icon: Zap, color: "text-orange-500" },
     { key: "humanize", label: "Humanize", sub: "Polish the output", icon: Sparkles, color: "text-amber-500" },
   ];
 
@@ -456,7 +456,7 @@ function SkillChainDisplay({ raw }: { raw: string }) {
   const skills = raw.split("→").map((s) => s.trim()).filter(Boolean);
   return (
     <div className="rounded-lg border border-purple-200 dark:border-purple-800/50 bg-purple-50/50 dark:bg-purple-950/20 p-4">
-      <div className="text-xs font-bold uppercase tracking-wider text-purple-700 dark:text-purple-400 mb-3">Skill chain — run in order</div>
+      <div className="text-xs font-bold uppercase tracking-wider text-purple-700 dark:text-purple-400 mb-3">Plugin chain — run in order</div>
       <div className="flex flex-wrap items-center gap-2">
         {skills.map((skill, i) => (
           <span key={`${skill}-${i}`} className="flex items-center gap-2">

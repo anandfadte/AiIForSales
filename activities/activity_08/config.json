@@ -5,13 +5,10 @@
   "subtitle": "CFO meeting in 48 hours. She wants numbers, not slides.",
   "domain": "Deal Acceleration",
   "duration_minutes": 25,
-  "ai_tool": "Claude (with Web Search + File Analysis plugins)",
+  "ai_tool": "Claude (Sales Plugin)",
   "difficulty": "Advanced",
   "phases": 4,
-  "plugins": [
-    "Web Search",
-    "File Analysis"
-  ],
+  "plugins": [],
   "skill_chain": [
     "/account-research",
     "/earnings-agent",
@@ -37,7 +34,7 @@
       "filename": "earnings_transcript.docx",
       "display_name": "Q3 Earnings Transcript",
       "type": "docx",
-      "role": "QuantumEdge Q3 call",
+      "role": "Legal & General Q3 call",
       "use_in": "Upload in Intel · Prompt 2"
     }
   ],

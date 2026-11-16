@@ -1,20 +1,17 @@
 # Intel
-> Enable both plugins, build your prompts, find TrueNorth's language and the differentiating questions. (~8 min)
-
-## plugin
-Web Search, File Analysis
+> Build your prompts, find Direct Line's language and the differentiating questions. (~8 min)
 
 ## context
 
-TrueNorth's RFI says "generic responses will be scored lower." The intel phase is what prevents generic. Web search gives you TrueNorth's specific language and competitive context — what Accenture and EXL are already saying. The RFI analysis tells you which of the 15 questions actually determines the shortlist.
+Direct Line's RFI says "generic responses will be scored lower." The intel phase is what prevents generic. Web search gives you Direct Line's specific language and competitive context — what Accenture and EXL are already saying. The RFI analysis tells you which of the 15 questions actually determines the shortlist.
 
-Both happen in the **same Claude conversation**. Context compounds.
+Both happen in the **same Claude conversation**. Context compounds. Web search and document analysis are built in — no setup needed.
 
 ## do_this
 
-**Step 1 — Open Claude.** Click the puzzle-piece icon and enable both **Web Search** and **File Analysis** plugins.
+**Step 1 — Open Claude.** Start a new conversation with the Sales Plugin active.
 
-**Step 2 — Build Prompt 1** using the skeleton below. Fill in fields A, B, C — then copy and send. Claude will research TrueNorth and map what competitors are claiming.
+**Step 2 — Build Prompt 1** using the skeleton below. Fill in fields A, B, C — then copy and send. Claude will research Direct Line and map what competitors are claiming.
 
 **Step 3 — Upload the file.** Add **sample_rfi.docx** (from the files panel on this page) to the same conversation — do NOT start a new chat.
 
@@ -23,13 +20,13 @@ Both happen in the **same Claude conversation**. Context compounds.
 ## prompt_skeleton
 {
   "fixed": {
-    "company": "TrueNorth Insurance Group · $8.4B · property & casualty insurer",
+    "company": "Direct Line Group · £3.1B GWP · UK's largest direct motor and home insurer · 10M policies",
     "goal": "RFI response · claims processing transformation · competing vs Accenture, Cognizant, EXL"
   },
   "inputs": [
-    { "key": "signal_1", "label": "A. What makes TrueNorth different from a generic P&C insurer?" },
+    { "key": "signal_1", "label": "A. What makes Direct Line different from a generic UK insurer?" },
     { "key": "signal_2", "label": "B. What claim are Accenture, Cognizant, AND EXL all making right now?" },
-    { "key": "signal_3", "label": "C. What in TrueNorth's RFI language reveals what they're really buying?" }
+    { "key": "signal_3", "label": "C. What in Direct Line's RFI language reveals what they're really buying?" }
   ],
   "template": "Research {company}. I'm preparing: {goal}. Find:\n1. {signal_1}\n2. {signal_2}\n3. {signal_3}\n400 words max."
 }
@@ -47,7 +44,7 @@ Both happen in the **same Claude conversation**. Context compounds.
 }
 
 ## gate
-Can name two things specific to TrueNorth's business — not generic P&C insurer facts — that must appear in the RFI responses.
+Can name two things specific to Direct Line's business — not generic UK insurer facts — that must appear in the RFI responses.
 Know the one claim Accenture, Cognizant, and EXL will all make — and have a differentiated response ready.
 Have ranked the 15 questions: know which 3-4 determine the shortlist, which are table stakes.
 

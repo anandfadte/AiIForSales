@@ -5,13 +5,10 @@
   "subtitle": "VP of Ops meeting in 5 days. Know their world before they test yours.",
   "domain": "Account Management",
   "duration_minutes": 25,
-  "ai_tool": "Claude (with Web Search + File Analysis plugins)",
+  "ai_tool": "Claude (Sales Plugin)",
   "difficulty": "Foundation",
   "phases": 4,
-  "plugins": [
-    "Web Search",
-    "File Analysis"
-  ],
+  "plugins": [],
   "skill_chain": [
     "/account-research",
     "/earnings-agent",
@@ -23,27 +20,27 @@
       "display_name": "Target Accounts",
       "type": "xlsx",
       "role": "10 target accounts with account context",
-      "use_in": "Intel · background reference"
+      "use_in": "Brief · background reference"
     },
     {
       "filename": "account_context_notes.docx",
       "display_name": "Account Context Notes",
       "type": "docx",
       "role": "CRM notes per account",
-      "use_in": "Intel · Prompt 1 reference"
+      "use_in": "Phase 2 · background reference"
     },
     {
       "filename": "annual_report_excerpt.docx",
       "display_name": "Annual Report Excerpt",
       "type": "docx",
-      "role": "Prospect's annual report",
-      "use_in": "Upload in Intel · Prompt 2"
+      "role": "Barclays annual report excerpt",
+      "use_in": "Brief · download for reference"
     }
   ],
   "learning_objectives": [
-    "Use Web Search to find live signals that aren't in your CRM",
-    "Interrogate a prospect document for what it hides, not just what it says",
-    "Chain /account-research and /earnings-agent in a single conversation",
+    "Run /account-research to build a structured account profile from Genpact's knowledge base",
+    "Use /earnings-agent to extract financial signals that VP Operations cares about",
+    "Chain two Sales Plugin commands in a single conversation",
     "Distil intelligence into a brief the account exec can use in 2 minutes"
   ],
   "deliverable": "Pre-meeting intelligence brief"

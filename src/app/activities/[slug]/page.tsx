@@ -80,7 +80,7 @@ export default async function ActivityPage({
             {config.plugins?.length > 0 && (
               <div className="px-4 py-3 flex items-center gap-4 border-b border-border/50 bg-surface">
                 <div className="shrink-0 w-24">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-blue-500">Phase 2</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-blue-500">Phase 1</span>
                   <p className="text-[10px] text-text-muted mt-0.5">Enable plugins</p>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
@@ -103,8 +103,8 @@ export default async function ActivityPage({
             {config.skill_chain && config.skill_chain.length > 0 && (
               <div className="px-4 py-3 flex items-center gap-4 bg-surface">
                 <div className="shrink-0 w-24">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-orange-500">Phase 3</span>
-                  <p className="text-[10px] text-text-muted mt-0.5">Run skills</p>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-orange-500">{config.plugins?.length > 0 ? "Phase 2" : "Phase 1"}</span>
+                  <p className="text-[10px] text-text-muted mt-0.5">Plugin chain</p>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
                   {config.skill_chain.map((skill, i) => (
@@ -121,7 +121,7 @@ export default async function ActivityPage({
               </div>
             )}
             <div className="px-4 py-2.5 border-t border-border/50 bg-surface-alt/60">
-              <p className="text-[11px] text-text-muted">Run everything in the <strong className="text-text-secondary">same Claude conversation</strong> — context from Phase 2 makes Phase 3 sharper.</p>
+              <p className="text-[11px] text-text-muted">Run all plugins in the <strong className="text-text-secondary">same Claude conversation</strong> — each step builds on the previous.</p>
             </div>
           </div>
         )}

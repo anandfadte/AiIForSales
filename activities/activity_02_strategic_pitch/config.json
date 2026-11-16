@@ -5,13 +5,10 @@
   "subtitle": "CFO pitch in 3 days. ROI from their own numbers, not benchmarks.",
   "domain": "Sales Strategy",
   "duration_minutes": 25,
-  "ai_tool": "Claude (with Web Search + File Analysis plugins)",
+  "ai_tool": "Claude (Sales Plugin)",
   "difficulty": "Intermediate",
   "phases": 4,
-  "plugins": [
-    "Web Search",
-    "File Analysis"
-  ],
+  "plugins": [],
   "skill_chain": [
     "/cxo-strategic-brief",
     "/cfo-deck-builder",
@@ -22,7 +19,7 @@
       "filename": "prospect_profile.docx",
       "display_name": "Prospect Profile",
       "type": "docx",
-      "role": "Internal relationship data for Cascade Retail",
+      "role": "Internal relationship data for Aviva",
       "use_in": "Intel · background reference"
     },
     {
